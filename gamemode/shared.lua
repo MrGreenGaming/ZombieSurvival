@@ -466,28 +466,7 @@ function GM:NextObjStage()
 end
 
 function GM:ZombieSpawnDistanceSort(other)
-	return self._ZombieSpawnDistance < other._ZombieSpawnDistance
-end
-
-function GM:SortZombieSpawnDistances(allplayers)
-	local zspawns = ents.FindByClass("zombiegasses") --team.GetSpawnPoint(TEAM_UNDEAD)
-	for _, pl in pairs(allplayers) do
-		if pl:Team() == TEAM_UNDEAD then
-			pl._ZombieSpawnDistance = -1
-		else
-			local plpos = pl:GetPos()
-			local closest = 9999999
-			for _, ent in pairs(zspawns) do
-				local dist = ent:GetPos():Distance(plpos)
-				if dist < closest then
-					closest = dist
-				end
-			end
-			pl._ZombieSpawnDistance = closest
-		end
-	end
-
-	table.sort(allplayers, self.ZombieSpawnDistanceSort)
+	return self.GasDistance < other.GasDistance
 end
 
 function WorldVisible(posa, posb)

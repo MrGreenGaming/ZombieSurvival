@@ -19,7 +19,7 @@ local Arrow = surface.GetTextureID("gui/arrow")
 SPRequired = 100
 	
 local TableUpdated = 0	
-local nailBarWidth = ScrW()*0.04		
+local nailBarWidth = ScrW()*0.0395		
 function hud.DrawHumanHUD()
 	hud.DrawAmmoPanel()
 	hud.DrawHealth()
@@ -31,29 +31,26 @@ function hud.DrawHumanHUD()
 			continue
 		end
 
-		if nail:GetPos():Distance(EyePos()) > 280 then
+		if nail:GetPos():Distance(EyePos()) > 160 then
 			continue
 		end
 		
 		local nailHealth = math.Round(nail:GetDTInt(0)*100/nail:GetDTInt(1))/100	
-		surface.SetDrawColor( 245, 245 , 255, 140 )
-		surface.DrawRect( nail:GetPos():ToScreen().x - nailBarWidth / 2, nail:GetPos():ToScreen().y, nailBarWidth, ScrH()*0.0075 )
+		surface.SetDrawColor( 245, 245 , 255, 160 )
+		surface.DrawRect( nail:GetPos():ToScreen().x - nailBarWidth / 2, nail:GetPos():ToScreen().y, nailBarWidth, ScrH()*0.006 )
 		surface.SetDrawColor(255 * (1 - nailHealth), 255 * nailHealth, 0, 220 )
-		surface.DrawRect( nail:GetPos():ToScreen().x - nailBarWidth / 2, nail:GetPos():ToScreen().y, nailBarWidth * nailHealth, ScrH()*0.0075 )
+		surface.DrawRect( nail:GetPos():ToScreen().x - nailBarWidth / 2, nail:GetPos():ToScreen().y, nailBarWidth * nailHealth, ScrH()*0.006 )
 	
-
 		--draw.SimpleTextOutlined("+".. math.Round(nail:GetDTInt(0)) .." / ".. math.Round(nail:GetDTInt(1)), "ArialBoldFive", nail:GetPos():ToScreen().x, nail:GetPos():ToScreen().y, Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,255))
 		--draw.SimpleTextOutlined(ent, "ArialBoldFive", nail:GetPos():ToScreen().x, nail:GetPos():ToScreen().y, Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,255))	
 	end	
 	--hud.DrawObjMessages()
 	
 	if CurTime() <= WARMUPTIME then
-		--if TableUpdated < CurTime() then
-			--TableUpdated = CurTime() + 3
-			--hud.UpdateHumanTable()
-			--local humans = team.GetPlayers(TEAM_HUMAN)		
-			--table.sort(humans,hud.ZombieSpawnDistanceSort)	
-		--end
+		if TableUpdated < CurTime() then
+			TableUpdated = CurTime() + 1
+			hud.UpdateHumanTable()	
+		end
 		hud.DrawZeroWaveMessage()	
 	end
 
@@ -273,7 +270,7 @@ net.Receive("weight", function(len)
 	weight = net.ReadFloat()
 end)
 
-local spBarX = 0 + (ScrW()*0.13 * 0.5)
+local spBarX = 0 + (ScrW()*0.028)
 local spBarY = ScrH()/1.1
 
 function hud.DrawSkillPoints()
@@ -293,7 +290,7 @@ function hud.DrawSkillPoints()
 	surface.DrawRect( spBarX + ScrW()*0.13 - ScrW()*0.001, spBarY - ScrH()*0.005, ScrW()*0.002, ScrH()*0.015 )
 
 	
-	draw.SimpleText(weight .. " KG", "HudHintTextLarge", ScrW()*0.025, spBarY * 1, Color( 255, 255, 255, 245 ), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT)
+	draw.SimpleText(weight .. " KG", "fontHuman6", ScrW()*0.166, spBarY * 0.99, Color( 255, 255, 255, 245 ), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT)
 	
 	if tier < 5 then
 		draw.SimpleText("T" .. tier .. " Weapon Drop: " .. SPRequired - MySelf:GetScore() .. " SP", "HudHintTextLarge", spBarX + (ScrW()*0.13 * 0.5), spBarY * 0.985, Color( 255, 255, 255, 245 ), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER )	
@@ -340,32 +337,28 @@ function hud.DrawObjMessages()
 end
 hook.Add("PostDrawOpaqueRenderables","hud.DrawObjMessages",hud.DrawObjMessages)
 
-
+local humans = team.GetPlayers(TEAM_HUMAN)	
+	
+	
+	
 function hud.UpdateHumanTable()
 
-	local humans = team.GetPlayers(TEAM_HUMAN)			
+	humans = team.GetPlayers(TEAM_HUMAN)		
 
+	for k,v in pairs(humans) do
 	
-
-		TableUpdated = CurTime() + 3
-		for k,v in pairs(humans) do
-			local pos = v:GetPos()
-			local closest = 9999999
-			for _, gasses in pairs(ents.FindByClass("zs_poisongasses")) do	
-				local dist = gasses:GetPos():Distance(pos)
-				if dist < closest then
-					closest = dist
-				end
+		local pos = v:GetPos()
+		local closest = 9999999
+		for _, gasses in pairs(ents.FindByClass("zs_poisongasses")) do	
+			local dist = gasses:GetPos():Distance(pos)
+			if dist < closest then
+				closest = dist
 			end
-			v.GasDistance = closest	
 		end
-
-
-	--	
-end
-
-function hud.ZombieSpawnDistanceSort(other)
-	return MySelf.GasDistance < other.GasDistance
+		v.GasDistance = closest	
+	end
+	
+	table.sort(humans,GAMEMODE.ZombieSpawnDistanceSort)		
 end
 
 function hud.DrawZeroWaveMessage()
@@ -379,12 +372,13 @@ function hud.DrawZeroWaveMessage()
 		--	draw.SimpleTextOutlined("Waiting for players... "..ToMinutesSeconds(math.max(0, WARMUPTIME - curtime)), "ArialBoldSeven", ScrW() * 0.5, ScrH() * 0.25, COLOR_GRAY,TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,255))
 			draw.SimpleTextOutlined("Humans closest to a zombie gas will become a zombie!", "ssNewAmmoFont7", ScrW() * 0.5, ScrH() * 0.65 - txth, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
 
-			
 			local vols = 0
 			local gastab = {}
 			
 			local voltab = {}
 			local allplayers = player.GetAll()
+			
+			--[[
 			for _, gasses in pairs(ents.FindByClass("zs_poisongasses")) do
 				local gaspos = gasses:GetPos()
 				for _, ent in pairs(allplayers) do
@@ -395,15 +389,10 @@ function hud.DrawZeroWaveMessage()
 					end
 				end
 			end
-
-			local numplayers = #allplayers
-			local desiredzombies = math.max(UNDEAD_START_AMOUNT, math.Round(numplayers * UNDEAD_START_AMOUNT_PERCENTAGE))
+			]]-- 
 			
-			local humans = team.GetPlayers(TEAM_HUMAN)	
-			
-			--[[
-			local distance = 9999999	
-	
+			local desiredzombies = math.max(UNDEAD_START_AMOUNT, math.ceil(#allplayers * UNDEAD_START_AMOUNT_PERCENTAGE))
+				
 			for _, pl in pairs(allplayers) do
 				if pl:Team() == TEAM_UNDEAD then
 					vols = vols + 1
@@ -411,47 +400,33 @@ function hud.DrawZeroWaveMessage()
 				end
 			end
 			
-			for i = 1, desiredzombies - vols do
-				if 0 < #humans then	
-					for j = 1, #humans do
-					
-						if humans[j].GasDistance < distance and not humans[j].ToBeZombie then
-							distance = humans[j].GasDistance
-							humans[j].ToBeZombie = true
-						else
-							humans[j].ToBeZombie = false						
-						end
-					end
-				end
-			end
-		
+			local y = ScrH() * 0.63 + txth * 2
 			for j = 1, #humans do
-				if humans[j].ToBeZombie then	
-					draw.SimpleTextOutlined(humans[j]:Name(), "ssNewAmmoFont7", ScrW() * 0.5, ScrH() * 0.2 + txth * 2	, COLOR_GRAY, TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,220))
-					humans[j].ToBeZombie = false				
-				end
-			end		
+				--if humans[j].ToBeZombie then	
+				
+				if j > vols + desiredzombies then continue end
+				draw.SimpleTextOutlined(humans[j]:Name(), "ssNewAmmoFont7", ScrW() * 0.5, y	, COLOR_GRAY, TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,220))
+					--humans[j].ToBeZombie = false				
+				--end
+				--print("UPDATE");
+				--print(humans[j]:Name())
+				--print(humans[j].GasDistance)
 
+				y = y + txth * 1.23
+			end		
+			
 
 			--local desiredzombies = math.max(1, math.ceil(numplayers * WAVE_ONE_ZOMBIES))
 			
-			local y = ScrH() * 0.8 + txth * 1.25
-			
 
-			for k,v in pairs(humans) do	
-				if v:Name() == LocalPlayer():Name() then
-					draw.SimpleTextOutlined(v:Name().. " " ..math.Round(v.GasDistance or 0), "ssNewAmmoFont4", ScrW() * 0.013, y, COLOR_RED, TEXT_ALIGN_LEFT , TEXT_ALIGN_CENTER,1, Color(0,0,0,200))
-				else
-					draw.SimpleTextOutlined(v:Name().. " " ..math.Round(v.GasDistance or 0), "ssNewAmmoFont4", ScrW() * 0.013, y, COLOR_GRAY, TEXT_ALIGN_LEFT , TEXT_ALIGN_CENTER,1, Color(0,0,0,200))				
-				end
-				y = y + txth * 1
-			end
-			]]--
+			local y = ScrH() * 0.8 + txth * 1.25
+
+
 			
 		--	draw.SimpleTextOutlined("Number of initial zombies this game ("..UNDEAD_START_AMOUNT * 100 .."%): "..desiredzombies, "ssNewAmmoFont7", ScrW() * 0.5, ScrH() * 0.75, COLOR_GRAY, TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,255))
-			draw.SimpleTextOutlined("Initial zombies this game: "..desiredzombies.."", "ssNewAmmoFont6.5", ScrW() * 0.5, ScrH() * 0.65, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
+			draw.SimpleTextOutlined("Initial zombie count: "..desiredzombies.."", "ssNewAmmoFont6.5", ScrW() * 0.5, ScrH() * 0.65, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
 			y = ScrH() * 0.65 + txth * 2
-			draw.SimpleTextOutlined("Volunteers: "..vols, "ssNewAmmoFont6.5", ScrW() * 0.5, ScrH() * 0.65 + txth, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
+			--draw.SimpleTextOutlined("Volunteers: "..vols, "ssNewAmmoFont6.5", ScrW() * 0.5, ScrH() * 0.65 + txth, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
 			surface.SetFont("Default")
 			txtw, txth = surface.GetTextSize("Hi")
 			for _, pl in pairs(voltab) do

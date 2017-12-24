@@ -140,6 +140,29 @@ end
  
 SWEP.NextSwitch = 0
 function SWEP:Reload()
+    if self.Owner.KnockedDown or ARENA_MODE or CurTime() < self.NextNail then
+        return
+    end
+	
+    local tr = self.Owner:TraceLine(48, MASK_SHOT, player.GetAll())
+
+    local trent = tr.Entity
+    if not IsValid(trent) then
+        return
+    end
+	
+	if tr.Hit and not tr.HitWorld then
+		if trent.Nails and #trent.Nails > 0 then
+		
+			self:PlaySwingSound();
+			self:SendWeaponAnim(ACT_VM_HITCENTER)
+			self.Alternate = not self.Alternate
+			self.Owner:SetAnimation(PLAYER_ATTACK1)
+			
+			trent:RemoveNail(self.Owner)
+            self.NextNail = CurTime() + 1
+		end	
+	end
 end
 
 function SWEP:CanPrimaryAttack()
@@ -343,6 +366,7 @@ function SWEP:SecondaryAttack()
                 nail:SetParentPhysNum(tr.PhysicsBone)
                 nail:SetParent(trent)
                 nail:SetOwner(self.Owner)
+				nail:SetNailParent(tr.Entity)
                 nail:Spawn()
                 trent:EmitSound("weapons/melee/crowbar/crowbar_hit-".. math.random(1, 4) ..".wav")
                 

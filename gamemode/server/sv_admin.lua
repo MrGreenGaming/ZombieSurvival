@@ -10,13 +10,13 @@ function SlayPlayer ( pl, cmd, args )
 	
 	-- Notice
 	if ENDROUND then
-		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." has slayed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." has slayed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 	else
 		for k, v in pairs( player.GetAll() ) do
 			v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," has slayed player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." !"})
 		end
 	end
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slayed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." has slayed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 
 	-- kill the player
 	GetPlayerByUserID( tonumber( args[1] ) ):Kill()
@@ -43,13 +43,13 @@ function RedeemPlayer ( pl, cmd, args )
 		return
 	else
 		if ENDROUND then
-			PrintMessageAll (HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." has redeemed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+			PrintMessageAll (HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." has redeemed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 		else
 			for k, v in pairs( player.GetAll() ) do
 				v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," has redeemed player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." !"})
 			end
 		end
-		Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has redeemed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+		Debug ( "[ADMIN] "..tostring ( pl:Name() ).." has redeemed player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 		
 	end
 	-- Redeem the player
@@ -65,8 +65,8 @@ function AddBots ( pl, cmd, args )
 	if not pl:IsSuperAdmin() then return end
 	
 	-- Notice
-	PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." added "..tonumber( args[1] ).." bots to the game !" )
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." added "..tonumber( args[1] ).." bots to the game !" )
+	PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." added "..tonumber( args[1] ).." bots to the game !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." added "..tonumber( args[1] ).." bots to the game !" )
 
 	-- No mimic and zombies
 	RunConsoleCommand ( "bot_mimic", "0" )
@@ -98,16 +98,16 @@ function SlapPlayer ( pl, cmd, args )
 	-- Notice
 	
 	if ENDROUND then
-		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
-		Target:ChatPrint ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
+		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
+		Target:ChatPrint ( "[ADMIN] "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
 	else
 		for k, v in pairs( player.GetAll() ) do
 			v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," has slapped player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !"})
-			Target:ChatPrint ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
+			Target:ChatPrint ( "[ADMIN] "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
 		end
 	end
 
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
 	
 	-- Slap the player
 	Target:TakeDamage ( Damage )
@@ -135,16 +135,16 @@ function SlowPlayer ( pl, cmd, args )
 	-- Notice
 	
 	if ENDROUND then
-		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
-		Target:ChatPrint ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
+		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
+		Target:ChatPrint ( "[ADMIN] "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
 	else
 		for k, v in pairs( player.GetAll() ) do
 			v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," has slapped player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !"})
-			Target:ChatPrint ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
+			Target:ChatPrint ( "[ADMIN] "..tostring ( pl:Name() ).." has slapped you because you are not obeying the game rules !" )
 		end
 	end
 
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." has slapped player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." with "..Damage.." damage !" )
 	
 	-- Slap the player
 	Target:TakeDamage ( Damage )
@@ -168,14 +168,14 @@ function GiveWeaponPlayer ( pl, cmd, args )
 	
 	-- Notice
 	if ENDROUND then
-		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." gave player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." weapon named: "..args[2].." !" )
+		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." gave player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." weapon named: "..args[2].." !" )
 	else
 		for k, v in pairs( player.GetAll() ) do
 			v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," gave player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." weapon named: "..args[2].." !"})
 		end
 	end
 	
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." gave player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." weapon named: "..args[2].." !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." gave player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." weapon named: "..args[2].." !" )
 
 	-- give the weapon
 	GetPlayerByUserID( tonumber( args[1] ) ):Give ( tostring ( args[2] ) )
@@ -201,13 +201,13 @@ function MutePlayer ( pl, cmd, args )
 	
 	-- Notice
 	if ENDROUND then
-		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 	else
 			for k, v in pairs( player.GetAll() ) do
 				v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," "..Action.." player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." !"})
 			end
 	end
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 
 	-- give the weapon
 	if not Type then Target:UnMute() else Target:Mute() end
@@ -233,13 +233,13 @@ function GagPlayer ( pl, cmd, args )
 			
 	-- Notice
 	if ENDROUND then
-		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 	else
 			for k, v in pairs( player.GetAll() ) do
 				v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," "..Action.." player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." !"})
 			end
 	end
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." "..Action.." player "..GetPlayerByUserID( tonumber( args[1] ) ):Name().." !" )
 
 	-- give the weapon
 	if not Type then Target:UnGag() else Target:Gag() end
@@ -265,13 +265,13 @@ function KickPlayer ( pl, cmd, args )
 
 	-- Notice
 	if ENDROUND then
-		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." has kicked player "..tostring( Victim:Name() ).." !" )
+		PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." has kicked player "..tostring( Victim:Name() ).." !" )
 	else	
 		for k, v in pairs( player.GetAll() ) do
 			v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," has kicked player ",Color(255,255,255),GetPlayerByUserID( tonumber( args[1] ) ):Name().." !"})
 		end
 	end
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has kicked player "..tostring( Victim:Name() ).." !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." has kicked player "..tostring( Victim:Name() ).." !" )
 
 	-- Run it
 	RunConsoleCommand("kickid", tonumber(args[1]))
@@ -323,8 +323,8 @@ function BanPlayer( pl, cmd, args )
 	game.ConsoleCommand("writeid\n")
 
 	--Notice
-	PrintMessageAll(HUD_PRINTTALK, "[ADMIN] Admin "..tostring(pl:Name()).." has banned player ".. tostring(target:Name()) .." for ".. TimeToBan .." minutes (".. args[3] ..")")
-	Debug("[ADMIN] Admin "..tostring(pl:Name()).." has banned player ".. tostring(target:Name()) .." for ".. TimeToBan .." minutes (".. args[3] ..")")
+	PrintMessageAll(HUD_PRINTTALK, "[ADMIN] "..tostring(pl:Name()).." has banned player ".. tostring(target:Name()) .." for ".. TimeToBan .." minutes (".. args[3] ..")")
+	Debug("[ADMIN] "..tostring(pl:Name()).." has banned player ".. tostring(target:Name()) .." for ".. TimeToBan .." minutes (".. args[3] ..")")
 end
 concommand.Add("ban_player", BanPlayer) 
 
@@ -336,8 +336,8 @@ function SlayAllPlayers ( pl, cmd, args )
 	if not pl:IsSuperAdmin() then return end
 	
 	-- Notice
-	PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." has slayed all the players on the server !" )
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." has slayed all the players on the server !" )
+	PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." has slayed all the players on the server !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." has slayed all the players on the server !" )
 
 	-- Kill everyone
 	for k,v in pairs ( player.GetAll() ) do
@@ -364,8 +364,8 @@ function ChangeLevel ( pl, cmd, args )
 	if CurrentMap == TargetMap then	pl:ChatPrint ( "[ADMIN] You can't change the map because it is already the current map." ) return end
 	
 	-- Notice
-	PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] Admin "..tostring ( pl:Name() ).." set the server to change map to "..FriendlyName.." in 10 seconds !" )
-	Debug ( "[ADMIN] Admin "..tostring ( pl:Name() ).." set the server to change map to "..FriendlyName.." in 10 seconds !" )
+	PrintMessageAll ( HUD_PRINTTALK, "[ADMIN] "..tostring ( pl:Name() ).." set the server to change map to "..FriendlyName.." in 10 seconds !" )
+	Debug ( "[ADMIN] "..tostring ( pl:Name() ).." set the server to change map to "..FriendlyName.." in 10 seconds !" )
 
 	-- Change the map with a delay of 10
 	timer.Simple ( 10, function() RunConsoleCommand ( "changelevel", TargetMap ) end )

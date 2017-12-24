@@ -1157,6 +1157,50 @@ function metaEntity:GetKeyValues()
 	return keyvalues[self] or {}
 end
 
+function metaEntity:RemoveNail(attacker)
+	if not self.Nails then 
+		return false
+	end
+
+	for i=1, #self.Nails do
+		local nail = self.Nails[i]
+		
+		if not IsValid(nail) then
+			table.remove(self.Nails, i)
+			i = i - 1
+			continue
+		end
+		--print(nail:GetNailParent())
+		bNailDied = true
+		local findcons = nail.constraint
+		local numcons = 0
+		
+		for _, theent in ipairs(self.Nails) do
+			if theent.constraint == findcons then
+				numcons = numcons + 1
+			end
+		end
+		
+		
+
+		if numcons == 1 then
+			findcons:Remove()
+		else
+			nail:Remove()
+		end
+		
+		--Remove from table
+		table.remove(self.Nails, i)
+		i = i - 1
+		break
+	end	
+
+	if #self.Nails == 0 then
+		self:GetPhysicsObject():EnableMotion(true)
+		self.Nails = nil
+	end
+end
+
 function metaEntity:DamageNails(attacker, inflictor, damage, dmginfo)
 	if not self.Nails then 
 		return false
@@ -1228,8 +1272,7 @@ function metaEntity:DamageNails(attacker, inflictor, damage, dmginfo)
 				
 		--Stop execution since we don't want to damage multiple nails in 1 hit
 		break
-				end
-			
+		end	
 	end
 	
 	if bNailDied then
@@ -1496,11 +1539,11 @@ function meta:CheckSpeedChange(damage)
 
 		
 	if self:IsHolding() then
-		local status = self.status_human_holding
-			if status and IsValid(status) and status:GetOwner() == self and status.GetObject and status:GetObject():IsValid() and status:GetObject():GetPhysicsObject():IsValid() then
-				fSpeed = fSpeed - status:GetObject():GetPhysicsObject():GetMass() * CARRY_SPEEDLOSS_PERKG
-				-- break
-			end
+	local status = self.status_human_holding
+		if status and IsValid(status) and status:GetOwner() == self and status.GetObject and status:GetObject():IsValid() and status:GetObject():GetPhysicsObject():IsValid() then
+			fSpeed = math.Clamp(fSpeed - status:GetObject():GetPhysicsObject():GetMass() * CARRY_SPEEDLOSS_PERKG,40,fSpeed);
+			-- break
+		end
 	end
 
 	if self:GetPerk("berserker_enrage") and fHealth < (self:GetMaximumHealth() * 0.5) then

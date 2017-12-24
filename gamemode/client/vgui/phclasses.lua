@@ -152,7 +152,7 @@ function DrawLoadoutMenu()
 	FrameText:SetMultiline( true )	
 	
 	FrameText.PaintOver = function ()
-		draw.DrawText("Version 13-10-2017", "Trebuchet24", 0, 0, Color(248,253,248,235), TEXT_ALIGN_LEFT)
+		draw.DrawText(" Version 24-12-2017", "Trebuchet24", 0, 0, Color(248,253,248,235), TEXT_ALIGN_LEFT)
 	end	
 	
 	local buttonWeb = vgui.Create( "DButton", Frame)

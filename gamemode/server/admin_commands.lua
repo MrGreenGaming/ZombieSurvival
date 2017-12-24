@@ -563,19 +563,19 @@ local function AdminSay(pl, text, teamonly)
 		elseif(sep[1] == "!slay") then
 			server_RunCommand (pl, "slay_player", target:UserID() )
 			pl:PrintMessage( HUD_PRINTTALK, "Player "..target:Name().." was killed.")
-			target:PrintMessage( HUD_PRINTTALK, "Admin "..pl:Name().." killed you.")
+			target:PrintMessage( HUD_PRINTTALK, pl:Name().." killed you.")
 			return ""
 		elseif(sep[1] == "!mute") then
 			target:Mute()
-			PrintMessageAll(HUD_PRINTTALK, "Admin ".. pl:Name() .." muted player "..tostring(target:Name())..".")
+			PrintMessageAll(HUD_PRINTTALK, pl:Name() .." muted player "..tostring(target:Name())..".")
 			return ""
 		elseif(sep[1] == "!unmute") then
 			target:UnMute()
-			PrintMessageAll(HUD_PRINTTALK, "Admin ".. pl:Name() .." unmuted player "..tostring(target:Name())..".")
+			PrintMessageAll(HUD_PRINTTALK, pl:Name() .." unmuted player "..tostring(target:Name())..".")
 			return ""
 		elseif(sep[1] == "!xp") then
 			target:AddXP(sep[3])
-			PrintMessageAll(HUD_PRINTTALK, "Admin ".. pl:Name() .." gave player "..tostring(target:Name()).." " .. sep[3] .. " XP.")
+			PrintMessageAll(HUD_PRINTTALK, pl:Name() .." gave player "..tostring(target:Name()).." " .. sep[3] .. " XP.")
 			return		
 		elseif(sep[1] == "!prestige") then
 			target.DataTable["ClassData"]["new"].rank = 0
@@ -590,15 +590,15 @@ local function AdminSay(pl, text, teamonly)
 				net.WriteDouble(tonumber(target.DataTable["ClassData"]["new"].xp))
 			net.Send(target)	
 			
-			PrintMessageAll(HUD_PRINTTALK, "Admin ".. pl:Name() .." prestiged player "..tostring(target:Name())..".")			
+			PrintMessageAll(HUD_PRINTTALK,  pl:Name() .." prestiged player "..tostring(target:Name())..".")			
 			return
 		elseif(sep[1] == "!gag") then
 			target:Gag()
-			PrintMessageAll(HUD_PRINTTALK, "Admin ".. pl:Name() .." gagged player "..tostring(target:Name())..".")
+			PrintMessageAll(HUD_PRINTTALK,  pl:Name() .." gagged player "..tostring(target:Name())..".")
 			return ""
 		elseif(sep[1] == "!ungag") then
 			target:UnGag()
-			PrintMessageAll(HUD_PRINTTALK, "Admin ".. pl:Name() .." ungagged player "..tostring(target:Name())..".")
+			PrintMessageAll(HUD_PRINTTALK,  pl:Name() .." ungagged player "..tostring(target:Name())..".")
 			return ""
 		elseif sep[1] == "!changeclass" and pl:IsSuperAdmin() then
 			local classId = tonumber(sep[3])
@@ -610,7 +610,7 @@ local function AdminSay(pl, text, teamonly)
 			--Set class
 			target:SpawnAsUndeadClass(classId)
 
-			PrintMessageAll(HUD_PRINTTALK, "Admin ".. pl:Name() .." changed "..tostring(target:Name()).."'s class.")
+			PrintMessageAll(HUD_PRINTTALK, pl:Name() .." changed "..tostring(target:Name()).."'s class.")
 			return ""
 		elseif(sep[1] == "!slap") then
 			local slapdam = 10
@@ -624,7 +624,7 @@ local function AdminSay(pl, text, teamonly)
 			target:EmitSound("ambient/voices/citizen_punches2.wav")
 			target:SetVelocity(Vector(math.random(-10,10),math.random(-10,10),math.random(0,10)):GetNormal()*math.random(300,500))
 			pl:Message("Slapped "..target:Name().." with "..slapdam.." damage")
-			target:Message("Admin "..pl:Name().." slapped you with "..slapdam.." damage")
+			target:Message(pl:Name().." slapped you with "..slapdam.." damage")
 			return ""		
 		elseif sep[1] == "!bring" then
 			server_RunCommand (pl, "bring_player", target:UserID() )

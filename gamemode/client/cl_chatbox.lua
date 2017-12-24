@@ -439,7 +439,7 @@ function CustomChat.ParseLine ( line, pl, teamonly, deadpl, Console )
 		local PlayerColor = team.GetColor ( pl:Team() )
 	
 		if teamonly then
-			Prefixes = "["..PlayerColor.r..","..PlayerColor.g..","..PlayerColor.b..","..PlayerColor.a.."](TEAM) [/c]"..Prefixes
+			Prefixes = "["..PlayerColor.r..","..PlayerColor.g..","..PlayerColor.b..",255](TEAM) [/c]"..Prefixes
 		end
 		
 		if deadpl then
@@ -461,14 +461,16 @@ function CustomChat.ParseLine ( line, pl, teamonly, deadpl, Console )
 			end	
 			]]--
 			-- Is Admin
-			if pl:IsAdmin() or pl:IsSuperAdmin() then
-				ColorToApply = Color ( 255,0,0 )
+			if pl:IsAdmin() then
+				ColorToApply = Color ( 0,255,0 )
+			elseif pl:IsSuperAdmin() then
+				ColorToApply = Color ( 255,255,255 )			
 			end
 			
 			Prefixes = Prefixes.."["..ColorToApply.r..","..ColorToApply.g..","..ColorToApply.b..",255]["..Title.."][/c] "
 		end
 		
-		Prefixes = Prefixes.."["..PlayerColor.r..","..PlayerColor.g..","..PlayerColor.b..","..PlayerColor.a.."]"..pl:Name().."[/c]: "
+		Prefixes = Prefixes.."["..PlayerColor.r..","..PlayerColor.g..","..PlayerColor.b..",255]"..pl:Name().."[/c]: "
 		
 	end
 

@@ -34,7 +34,7 @@ function GM:SetRandomsToZombie() --Duby: I took Necro's old code and modified it
 
 	--local desiredzombies = math.max(1, math.ceil(3))
 	--local desiredzombies = math.max(UNDEAD_START_AMOUNT_MINIMUM, math.Round(3 * UNDEAD_START_AMOUNT_PERCENTAGE))
-	local desiredzombies = math.max(UNDEAD_START_AMOUNT, math.Round(numplayers * UNDEAD_START_AMOUNT_PERCENTAGE))
+	local desiredzombies = math.max(UNDEAD_START_AMOUNT, math.ceil(numplayers * UNDEAD_START_AMOUNT_PERCENTAGE))
 	
 	local humans = team.GetPlayers(TEAM_HUMAN)			
 	

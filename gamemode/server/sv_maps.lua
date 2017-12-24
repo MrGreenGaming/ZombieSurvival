@@ -91,6 +91,9 @@ function GM:MakeBlankMapList()
 		
 	local filename = "zombiesurvival/zsmapcycle.txt"	
 	local str = file.Read("../mapcycle.txt")
+	
+	if (str == nil) then return end
+	
 	local maps = string.Explode("\n",str)
 	
 	for _,v in pairs ( maps ) do

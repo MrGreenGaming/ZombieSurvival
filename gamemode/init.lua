@@ -901,11 +901,11 @@ function GM:PlayerNoClip(pl, on)
 	if pl:IsAdmin() and ALLOW_ADMIN_NOCLIP and pl:Team() ~= TEAM_SPECTATOR and not pl:IsFreeSpectating() then
 		if pl:GetMoveType() ~= MOVETYPE_NOCLIP then
 			for k, v in pairs( player.GetAll() ) do
-				v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," turned ",Color(255,0,0),"ON",Color(235,235,255)," noclip."} )
+				v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," turned ",Color(255,0,0),"ON",Color(235,235,255)," noclip."} )
 			end
 		else
 			for k, v in pairs( player.GetAll() ) do
-				v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"Admin ",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," turned ",Color(255,0,0),"OFF",Color(235,235,255)," noclip."} )
+				v:CustomChatPrint( {nil, Color(255,0,0),"[ADMIN] ", Color(245,245,255),"",Color(255,0,0),tostring ( pl:Name() ),Color(235,235,255)," turned ",Color(255,0,0),"OFF",Color(235,235,255)," noclip."} )
 			end
 		end
 		

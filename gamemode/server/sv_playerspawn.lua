@@ -818,7 +818,7 @@ function CalculatePlayerLoadout(pl)
 	--Check if we are THE Gordon Freeman
 	if pl.IsFreeman then
 		--Give crowbar
-		pl:Give("weapon_zs_melee_crowbar")		
+		pl:Give("weapon_zs_crowbar")		
 	end		
 
 	--Check if bought Magnum (give 1/6th chance)

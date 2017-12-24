@@ -14,6 +14,9 @@ function ENT:Initialize()
 	--Initial and Maximum Health
 	self:DrawShadow(false)
 	self.Heal = 100
+	
+	self.prop = nil;
+	
 	--Increase health when having a perk
 	local Owner = self:GetOwner()
 	if IsValid(Owner) then
@@ -50,6 +53,14 @@ function ENT:SetNailHealth(am)
 	self.Entity:SetDTInt(0,am)
 end
 
+function ENT:SetNailParent(prop)
+	self.prop = prop
+
+end
+
+function ENT:GetNailParent()
+	return self.prop
+end
 --[[function ENT:Think()
 	self:NextThink(CurTime() + 1)
 

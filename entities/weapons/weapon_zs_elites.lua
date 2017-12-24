@@ -32,7 +32,7 @@ SWEP.Primary.Delay			= 0.16
 SWEP.Primary.Automatic		= true  
 SWEP.Primary.Ammo			= "pistol"
 
-
+SWEP.Type = "Pistol"
 SWEP.ConeMax = 0.08
 SWEP.ConeMin = 0.05
 
