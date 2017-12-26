@@ -484,6 +484,12 @@ function SWEP:Equip(NewOwner)
 	if SERVER then
 		self.Owner.Weight = self.Owner.Weight + self.Weight
 		self.Owner:CheckSpeedChange()
+		
+		
+		if self.Owner:HasWeapon("weapon_zs_fists2") then
+			self.Owner:StripWeapon("weapon_zs_fists2")
+			self.Owner:SelectWeapon("weapon_zs_hammer")
+		end
 	end   
    
     -- Update it just in case

@@ -64,10 +64,34 @@ function DropWeapon(pl, commandName, args)
 		return false
 	end
 	
+	if pl:GetActiveWeapon():GetClass() == "weapon_zs_fists2" then return end
+	
 	local Weapon = pl:GetActiveWeapon()
 	local wepname = Weapon:GetClass()
-	
+	local wepType = Weapon:GetType();
 	local PlayerWeapons = pl:GetWeapons()
+	
+	local meleeWeaponFound = false
+	local meleeWeaponCount = 0;
+	
+	for k,v in pairs(pl:GetWeapons()) do
+		local type = v:GetType()	
+		local class = v:GetClass()
+		
+		if (type == "melee") then
+			meleeWeaponFound = true
+			meleeWeaponCount = meleeWeaponCount + 1
+		end
+		
+		if (class == "weapon_zs_hammer") then
+			meleeWeaponFound = true
+			meleeWeaponCount = meleeWeaponCount + 1		
+		end
+	end		
+	
+
+	
+	--[[
 	local Count = 0
 	for k,v in pairs ( GAMEMODE.HumanWeapons ) do
 		if not v.Restricted then
@@ -78,6 +102,7 @@ function DropWeapon(pl, commandName, args)
 			end
 		end
 	end
+	]]--
 	
 	-- you can't drop all of them!
 
@@ -86,6 +111,7 @@ function DropWeapon(pl, commandName, args)
 	--	GAMEMODE:SetPlayerSpeed(pl, 210)
 	--end
 	
+	--[[
 	if string.sub( wepname,1,5 ) == "admin" or wepname == "weapon_physcannon" or wepname == "weapon_physgun" then
 		pl:Message("You can't drop this weapon")
 		return false
@@ -105,8 +131,9 @@ function DropWeapon(pl, commandName, args)
 			Weapon.RemainingAmmunition = pl:GetAmmoCount(Weapon:GetPrimaryAmmoTypeString())
 		end
 	end
-	
+	]]--
 	-- Drop the weapon and check to see if you can before.
+	
 	if not pl:CanDropWeapon(Weapon) then
 		pl:ChatPrint("You can't drop your weapon inside objects.")
 		return false
@@ -114,7 +141,18 @@ function DropWeapon(pl, commandName, args)
 
 	--Actual dropping
 	pl:DropWeapon(Weapon)
+	
+	if (meleeWeaponFound and meleeWeaponCount == 1 and (wepType == "melee" or wepname == "weapon_zs_hammer")) then
+		pl:Give("weapon_zs_fists2");
+		pl:SelectWeapon("weapon_zs_fists2")
+	end	
+	
+	
 	pl:CheckSpeedChange()
+	
+	
+	
+	
 	--Notify 
 	--pl:ChatPrint( "You've dropped a "..tostring ( GAMEMODE.HumanWeapons[wepname].Name ) )
 end
@@ -580,56 +618,42 @@ function RollTheDice ( pl,commandName,args )
 			message = "WIN: ".. message .." rolled the dice and has found a piece of brain!"
 		end
 		if pl:Team() == TEAM_HUMAN then	
-			pl:SetVelocity(Vector(math.random(0,10000),math.random(0,10000),math.random(0,10000)))
-			message = "LOSE: ".. message .." rolled the dice and has been flung!"
+			message = "WIN: ".. message .." rolled the dice and has been given 30 SP!"
+			skillpoints.AddSkillPoints(pl,30);
 		end		
 	elseif diceRoll == 2 then
 		if pl:Team() == TEAM_HUMAN then
 			if (Luck) then
-				message = "LOSE: ".. message .." rolled the dice and avoided getting raped in the ass."
+				message = "LOSE: ".. message .." rolled the dice and has had their life halved!"
 				pl:SetHealth(math.Clamp(pl:Health() * 0.5,0,pl:GetMaximumHealth()))
 			else
-				message = "LOSE: ".. message .." rolled the dice and got raped in the ass."
+				message = "LOSE: ".. message .." rolled the dice and has had their life drained!"
 				pl:SetHealth(1)		
 			end
 
 		elseif pl:Team() == TEAM_UNDEAD then
-			local calchealth = math.Clamp ( 200 - pl:Health(),60,200 )
-			local randhealth = math.random( 25, math.Round ( calchealth ) )
+			local calchealth = math.Clamp ( math.random(0, pl:GetMaximumHealth()), 0, pl:GetMaximumHealth() )
 			if (Luck) then
-				randhealth = randhealth * 1.5
+				calchealth = calchealth * 1.5
 			end
-			pl:SetHealth(pl:Health() + randhealth)
-			message = "WIN: ".. message .." rolled the dice and gained ".. randhealth .."KG of flesh!!"
+			pl:SetHealth(pl:Health() + calchealth)
+			message = "WIN: ".. message .." rolled the dice and gained ".. calchealth .."KG of flesh!!"
 		end
+		
 	elseif diceRoll == 3 then
 		if pl:Team() == TEAM_HUMAN then
 			if pl:HasBought("ladyluck") then
-				pl:GiveAmmo( 40, "pistol" )	
-				pl:GiveAmmo( 80, "ar2" )
-				pl:GiveAmmo( 80, "SMG1" )	
-				pl:GiveAmmo( 30, "buckshot" )		
-				pl:GiveAmmo( 10, "XBowBolt" )
-				pl:GiveAmmo( 20, "357" )
-				pl:GiveAmmo( 60, "alyxgun" )			
-				pl:GiveAmmo( 70, "battery" )					
+				pl:GiveAmmoPack();
+				pl:GiveAmmoPack();
 				message = "WIN: ".. message .." rolled the dice and received plenty of ammo!"		
 			else
-				pl:GiveAmmo( 30, "pistol" )	
-				pl:GiveAmmo( 60, "ar2" )
-				pl:GiveAmmo( 60, "SMG1" )	
-				pl:GiveAmmo( 20, "buckshot" )		
-				pl:GiveAmmo( 5, "XBowBolt" )
-				pl:GiveAmmo( 20, "357" )
-				pl:GiveAmmo( 40, "alyxgun" )	
-				pl:GiveAmmo( 50, "battery" )				
-				message = "WIN: ".. message .." rolled the dice and received some ammo!"
+				pl:GiveAmmoPack();
+				message = "WIN: ".. message .." rolled the dice and received ammo!"
 			end				
 		elseif pl:Team() == TEAM_UNDEAD then
-			local calchealth = math.Clamp ( 100 - pl:Health(),60,100 )
-			local randhealth = math.random( 25, math.Round ( calchealth ) )
-			pl:SetHealth(math.max(pl:Health() - randhealth, 1))
-			message = "LOSE: ".. message .." rolled the dice and lost ".. randhealth .."KG of flesh!!"
+			local calchealth = math.Clamp ( math.random(0, pl:GetMaximumHealth()), 0, pl:GetMaximumHealth() )
+			pl:SetHealth(math.max(calchealth, 1))
+			message = "LOSE: ".. message .." rolled the dice and lost ".. math.max(calchealth, 1) .."KG of flesh!!"
 		end
 	elseif diceRoll == 4 then
 		if pl:Team() == TEAM_HUMAN then
@@ -640,8 +664,6 @@ function RollTheDice ( pl,commandName,args )
 			if (Luck) then
 				randhealth = math.round(randhealth * 1.25)
 			end
-			
-			
 			message = "WIN: ".. message .." rolled the dice and gained ".. randhealth .." health!"
 		elseif pl:Team() == TEAM_UNDEAD then
 			local calchealth = math.Clamp ( 200 - pl:Health(),60,250 )
@@ -654,7 +676,7 @@ function RollTheDice ( pl,commandName,args )
 			if (Luck) then
 				pl:Ignite( math.random(2,3), 0)
 			else
-				pl:Ignite( math.random(2,6), 0)
+				pl:Ignite( math.random(2,7), 0)
 			end
 			message = "LOSE: "..message.." was put on fire by the dice!"
 		elseif pl:Team() == TEAM_UNDEAD then

@@ -42,7 +42,7 @@ SWEP.Primary.Ammo			= "ar2"
 SWEP.Type = "Assault Rifle"
 SWEP.Slot = 2
 SWEP.Weight = 4
-SWEP.ConeMax = 0.15
+SWEP.ConeMax = 0.05
 SWEP.ConeMin = 0.03
 
 

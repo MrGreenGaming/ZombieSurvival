@@ -324,7 +324,6 @@ local function OnPressedF3(pl)
 	if pl:Team() == TEAM_UNDEAD then
 		pl:SendLua("DoClassesMenu()")
 	elseif pl:Team() == TEAM_HUMAN and pl:Alive() then
-		if pl:GetActiveWeapon():GetClass() == "weapon_zs_fists2" then return end
 		DropWeapon(pl)	
 	end
 end

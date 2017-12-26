@@ -604,7 +604,7 @@ CUSTOM_FOOTSTEPS = false
 AMMO_REGENERATE_RATE = 2056744
 
 --Warming up time
-WARMUPTIME = 140
+WARMUPTIME = 80
 
 -- In seconds, how long humans need to survive.
 --ROUNDTIME = (20*60) + WARMUPTIME -- 20 minutes
@@ -616,10 +616,10 @@ ROUNDTIME = (15*60) + WARMUPTIME -- 15 minutes
 ROUNDSTARTTIME = 0
 
 -- Time in seconds between end round and next map.
-INTERMISSION_TIME = 45
+INTERMISSION_TIME = 30
 
 --Amount of time players have to vote for next map(seconds)
-VOTE_TIME = 30
+VOTE_TIME = 25
 
 --Set this to true to destroy all brush-based doors that aren't based on phys_hinge and func_physbox or whatever. For door campers.
 DESTROY_DOORS = true

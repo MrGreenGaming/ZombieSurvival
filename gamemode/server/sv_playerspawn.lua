@@ -657,25 +657,25 @@ function CalculatePlayerLoadout(pl)
 	end
 
 	--Medic Stages
-	local medicstage1 = {"weapon_zs_fists2", "weapon_zs_p228","weapon_zs_stunstick","weapon_zs_medkit"}
+	local medicstage1 = {"weapon_zs_p228","weapon_zs_stunstick","weapon_zs_medkit"}
 		
 	--Support stages
-	local support = {"weapon_zs_ammunition_pack", "weapon_zs_tools_supplies", "weapon_zs_fists2", "weapon_zs_tools_torch", "weapon_zs_usp","weapon_zs_hammer"}
+	local support = {"weapon_zs_ammunition_pack", "weapon_zs_tools_supplies", "weapon_zs_tools_torch", "weapon_zs_usp","weapon_zs_hammer"}
 		
 	--Commando stages
-	local commando = {"weapon_zs_fists2", "weapon_zs_fiveseven","weapon_zs_knife","weapon_zs_grenade"}
+	local commando = {"weapon_zs_fiveseven","weapon_zs_knife","weapon_zs_grenade"}
 		
 	--Engineer stages
-	local engineer = {"weapon_zs_fists2", "weapon_zs_owens", "weapon_zs_knife","weapon_zs_turret","weapon_zs_proximity_mine"}
+	local engineer = {"weapon_zs_fists2", "weapon_zs_owens","weapon_zs_turret","weapon_zs_proximity_mine"}
 		
 	--Berserker stages
-	local berserker = {"weapon_zs_fists2", "weapon_zs_deagle","weapon_zs_plank"}
+	local berserker = {"weapon_zs_deagle","weapon_zs_plank"}
 		
 	--Sharpshooter stages
-	local sharpshooter = {"weapon_zs_fists2", "weapon_zs_barreta","weapon_zs_knife"}
+	local sharpshooter = {"weapon_zs_barreta","weapon_zs_knife"}
 	
 	--PyroTechnic stages	
-	local pyro = {"weapon_zs_fists2", "weapon_zs_alyx","weapon_zs_knife"}
+	local pyro = {"weapon_zs_alyx","weapon_zs_knife"}
 
 	pl.Loadout = {}
 	

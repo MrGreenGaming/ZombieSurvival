@@ -37,7 +37,7 @@ function ENT:Initialize()
 		self.Entity:PhysicsInit(SOLID_VPHYSICS)
 		self.Entity:SetMoveType(MOVETYPE_VPHYSICS)
 		self.Entity:SetSolid(SOLID_VPHYSICS)	
-		self.Entity:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
+		self.Entity:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 
 		local phys = self.Entity:GetPhysicsObject()
 		if IsValid(phys) then
@@ -66,33 +66,31 @@ if SERVER then
 		if activator:IsZombie() then
 			return
 		end
-	
-		if activator:IsPlayer() and activator:IsHuman() then
 		
-		ammoType = 	activator:GetActiveWeapon():GetPrimaryAmmoTypeString()
-			
-		if (ammoType == "none") then
-			return 
-		end
-		
-		if (ammoType == "SniperRound") then
-			return
-		end
-			
-		activator:GiveAmmoPack(ammoType)	
+		if (activator:KeyPressed(IN_USE)) then
+			if activator:IsPlayer() and activator:IsHuman() then
+						
+			ammoType = 	activator:GetActiveWeapon():GetPrimaryAmmoTypeString()
 				
-		--activator:GiveAmmoPack(self.AmmoType)	
+			if (ammoType == "none") then
+				return 
+			end
+			
+			if (ammoType == "SniperRound") then
+				return
+			end
+				
+			activator:GiveAmmoPack(ammoType)	
+					
+			--activator:GiveAmmoPack(self.AmmoType)	
 
-		self:EmitSound("items/gift_pickup.wav" )
-		self:Remove()	
 		
+			
+			
+			self:EmitSound("items/gift_pickup.wav" )
+			self:Remove()	
+			
+			end
 		end
 	end
 end
-	
-
---if SHARED then
-	--function ENT:Draw()
-	--	self:RenderGlowEffect( Color(100/ 255, 180/ 255, 110/ 255) )		
-	--end
---end

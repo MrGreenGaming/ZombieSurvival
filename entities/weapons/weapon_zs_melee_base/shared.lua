@@ -166,6 +166,15 @@ function SWEP:Equip(NewOwner)
 	if SERVER then
 		self.Owner.Weight = self.Owner.Weight + self.Weight
 		self.Owner:CheckSpeedChange()
+		
+		
+		if not self:GetClass() == "weapon_zs_fists2" then
+			if self.Owner:HasWeapon("weapon_zs_fists2") then
+				self.Owner:StripWeapon("weapon_zs_fists2")
+				self.Owner:SelectWeapon("weapon_zs_hammer")
+			end
+		end
+		
 	end
 	--Call this function to update weapon slot and others
 	gamemode.Call("OnWeaponEquip", NewOwner, self)
