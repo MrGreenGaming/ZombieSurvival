@@ -847,4 +847,19 @@ function table.Shuffle( tab )
 	return res
 end
 
+function tonumbersafe(a)
+	local n = tonumber(a)
+
+	if n then
+		if n == 0 or n < 0 or n > 0 then
+			return n
+		end
+
+		-- NaN!
+		return 0
+	end
+
+	return nil
+end
+
 

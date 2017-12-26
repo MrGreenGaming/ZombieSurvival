@@ -218,6 +218,19 @@ local RandomText = table.Random({
 local matGlow = Material("Sprites/light_glow02_add_noz")
 local colHealth = Color(255, 255, 0, 255)
 
+GM.InputMouseX = 0
+GM.InputMouseY = 0
+
+function GM:_InputMouseApply(cmd, x, y, ang)
+	self.InputMouseX = x
+	self.InputMouseY = y
+
+	if MySelf:KeyDown(IN_WALK) and MySelf:IsHolding() then
+		RunConsoleCommand("_zs_rotateang", self.InputMouseX, self.InputMouseY)
+		return true
+	end
+end
+
 local CachedHumans, NextHumansCache = {}, 0
 local function HeartbeatGlow()
 	if MySelf:Team() ~= TEAM_UNDEAD then
@@ -285,6 +298,7 @@ end)
 -- Called when client loaded
 function GM:OnClientReady()
 	gui.EnableScreenClicker(true)
+		self.InputMouseApply = self._InputMouseApply
 end
 
 -- Called when myself is ready
@@ -953,9 +967,10 @@ local function RestrictControls(pl, bind, pressed)
 		--Third person view toggle
 		if bind == "+menu_context" then
 			GAMEMODE.ZombieThirdPerson = not GAMEMODE.ZombieThirdPerson
+		--Sprint needed for prop handling, humans cant sprint anyways still.
 		--Block running for non-Zombines
-		elseif bind == "+speed" and not pl:IsZombine() then --string.find(bind, "speed")
-			return true
+		--elseif bind == "+speed" and not pl:IsZombine() then --string.find(bind, "speed")
+		--	return true
 		--Ducking
 		elseif bind == "+duck" then --string.find(bind, "duck")
 			local Class = pl:GetZombieClass()

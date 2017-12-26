@@ -139,6 +139,17 @@ function ENT:OnRemove()
 	end
 end
 
+
+concommand.Add("_zs_rotateang", function(sender, command, arguments)
+	local x = tonumbersafe(arguments[1])
+	local y = tonumbersafe(arguments[2])
+
+	if x and y then
+		sender.InputMouseX = math.Clamp(x * 0.1, -180, 180)
+		sender.InputMouseY = math.Clamp(y * 0.1, -180, 180)
+	end
+end)
+
 local ShadowParams = {secondstoarrive = 0.01, maxangular = 1000, maxangulardamp = 10000, maxspeed = 500, maxspeeddamp = 1000, dampfactor = 0.65, teleportdistance = 0}
 function ENT:Think()
 	local ct = CurTime()
@@ -174,23 +185,42 @@ function ENT:Think()
 
 	objectphys:Wake()
 
-	if self:GetIsHeavy() then
+	if owner:KeyPressed(IN_ATTACK) then
+		object:SetPhysicsAttacker(owner)
+		self:Remove()
+		return
+	elseif self:GetIsHeavy() then
 		local pullpos = self:GetPullPos()
 		local hingepos = self:GetHingePos()
-		objectphys:ApplyForceOffset(objectphys:GetMass() * frametime * 450 * (pullpos - hingepos):GetNormal(), hingepos)
-		--[=[local targetpos = shootpos + owner:GetAimVector() * 16
-		local vel = (targetpos - object:NearestPoint(targetpos)):Normalize()
-		--vel.z = 0
-		objectphys:ApplyForceCenter(objectphys:GetMass() * frametime * 500 * vel:Normalize())]=]
+		objectphys:ApplyForceOffset(objectphys:GetMass() * frametime * 450 * (pullpos - hingepos):GetNormalized(), hingepos)
+	elseif owner:KeyDown(IN_ATTACK2) and not owner:GetActiveWeapon().NoPropThrowing then
+		owner:ConCommand("-attack2")
+		objectphys:ApplyForceCenter(objectphys:GetMass() * math.Clamp(1.25 - math.min(1, (object:OBBMins():Length() + object:OBBMaxs():Length()) / CARRY_DRAG_VOLUME), 0.25, 1) * 500 * owner:GetAimVector())
+		object:SetPhysicsAttacker(owner)
+
+		self:Remove()
+		return
 	else
-		if not self.ObjectPosition or not owner:KeyDown(IN_SPEED) and not owner:KeyDown(IN_ALT1) then
+		if not self.ObjectPosition or not owner:KeyDown(IN_SPEED) then
 			local obbcenter = object:OBBCenter()
 			local objectpos = shootpos + owner:GetAimVector() * 48
 			objectpos = objectpos - obbcenter.z * object:GetUp()
 			objectpos = objectpos - obbcenter.y * object:GetRight()
 			objectpos = objectpos - obbcenter.x * object:GetForward()
 			self.ObjectPosition = objectpos
-			self.ObjectAngles = object:GetAngles()
+			if not self.ObjectAngles then
+				self.ObjectAngles = object:GetAngles()
+			end
+		end
+		
+		if owner:KeyDown(IN_SPEED) then
+
+			if owner:KeyPressed(IN_SPEED) then
+				self.ObjectAngles = object:GetAngles()
+			end
+		elseif owner:KeyDown(IN_WALK) then
+			self.ObjectAngles:RotateAroundAxis(owner:EyeAngles():Up(), owner.InputMouseX or 0)
+			self.ObjectAngles:RotateAroundAxis(owner:EyeAngles():Right(), owner.InputMouseY or 0)
 		end
 
 		ShadowParams.pos = self.ObjectPosition

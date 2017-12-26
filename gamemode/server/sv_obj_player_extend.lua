@@ -1189,6 +1189,13 @@ function metaEntity:RemoveNail(attacker)
 			nail:Remove()
 		end
 		
+		for i,j in pairs(attacker:GetWeapons()) do
+			local class = j:GetClass()		
+			if class == "weapon_zs_hammer" then
+				j:SetClip2(j:Clip2() + 1)
+			end
+		end		
+		
 		--Remove from table
 		table.remove(self.Nails, i)
 		i = i - 1
@@ -1214,7 +1221,7 @@ function metaEntity:DamageNails(attacker, inflictor, damage, dmginfo)
 			if attacker:GetActiveWeapon():GetClass() == "weapon_zs_hammer" then
 				return true
 			else
-				damage = damage * 0.25
+				damage = damage * 0.33
 			end
 		else return true end
 	end
@@ -1224,7 +1231,6 @@ function metaEntity:DamageNails(attacker, inflictor, damage, dmginfo)
 	if (IsValid(attacker) and attacker:IsPlayer() and attacker:Team() == TEAM_HUMAN) or (attacker.GetOwner and IsValid(attacker:GetOwner()) and attacker:GetOwner():IsPlayer() and attacker:GetOwner():Team() == TEAM_HUMAN) then
 		ent._LastAttackerIsHuman = true
 	end
-	
 
 	for i=1, #ent.Nails do
 		local nail = ent.Nails[i]
@@ -1238,12 +1244,11 @@ function metaEntity:DamageNails(attacker, inflictor, damage, dmginfo)
 		
 		if (i == 1) then
 			ent:EmitSound( "physics/metal/metal_box_impact_bullet"..math.random( 1,3 )..".wav", 80, math.Clamp(nail:GetNailHealth() * -1 + 140,60,110) )
-			ent:SetHealth(ent:Health() - ((damage/#ent.Nails) + damage*0.3))			
+			ent:SetHealth(ent:Health() - ((damage * 1.5)/#ent.Nails))			
 		end
 		
 		--damage - damage / ent.Nails * 0.2
 		nail:SetDTInt(1, nail:GetDTInt(1) - ((damage/(#ent.Nails * 2)) * 0.2))
-		
 		nail:SetNailHealth(nail:GetNailHealth() - ((damage/(#ent.Nails * 2)) + damage * 0.5))	
 
 		--Check for nail heath
@@ -1276,9 +1281,6 @@ function metaEntity:DamageNails(attacker, inflictor, damage, dmginfo)
 	end
 	
 	if bNailDied then
-		--Damage prop a bit to prevent nail abuse
-		dmginfo:ScaleDamage(1.25/#ent.Nails)
-		
 		--Enable motion and reset for optimization
 		if #self.Nails == 0 then
 			self:GetPhysicsObject():EnableMotion(true)

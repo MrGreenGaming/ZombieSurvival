@@ -157,10 +157,9 @@ function SWEP:Reload()
 			self:PlaySwingSound();
 			self:SendWeaponAnim(ACT_VM_HITCENTER)
 			self.Alternate = not self.Alternate
-			self.Owner:SetAnimation(PLAYER_ATTACK1)
-			
+			self:MeleeSwing()
 			trent:RemoveNail(self.Owner)
-            self.NextNail = CurTime() + 1
+            self.NextNail = CurTime() + 0.6
 		end	
 	end
 end
