@@ -11,25 +11,23 @@ mysql.ValidChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567
 
 -- Warnings
 mysql.Warnings = { 
-["connect_module_not_loaded"] = "[SQL] Couldn't connect to the database because SQL module was not found/initialized!",
-["module_no_load_query"] = "[SQL] Couldn't query server because module not loaded.",
-["no_connection"] = "[SQL] Unable to connect to database host",
-["module_loaded"] = "[SQL] Successfully loaded SQL module",
-["module_not_loaded"] = "[SQL] Couldn't load SQL module",
-["connection_on"] = "[SQL] Successfully connected to the DB",
-["verified"] = "[SQL] Database verified",
+	["connect_module_not_loaded"] = "[SQL] Couldn't connect to the database because SQL module was not found/initialized!",
+	["module_no_load_query"] = "[SQL] Couldn't query server because module not loaded.",
+	["no_connection"] = "[SQL] Unable to connect to database host",
+	["module_loaded"] = "[SQL] Successfully loaded SQL module",
+	["module_not_loaded"] = "[SQL] Couldn't load SQL module",
+	["connection_on"] = "[SQL] Successfully connected to the DB",
+	["verified"] = "[SQL] Database verified",
 }
 
-if file.Exists("bin/gmsv_tmysql4_*.dll", "LUA") then
+if file.Exists("bin/gmsv_tmysql4_*.dll", "LUA") or file.Exists("bin/gmsv_mysqloo_*.dll", "LUA") then
 	-- Try to load module
-	require( "tmysql4" )
+	require("tmysql4")
 	mysql.bLoaded = true
 else
 	Debug(mysql.Warnings["module_not_loaded"])
 	mysql.bLoaded = false
 end
-
-
 
 -- Returns if sql module has loaded
 mysql.IsModuleActive = function()

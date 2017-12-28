@@ -156,15 +156,6 @@ include("modules/skillshop/sv_init.lua")
 include("modules/boneanimlib_v2/sh_boneanimlib.lua")
 include("modules/boneanimlib_v2/boneanimlib.lua")
 
---IRC
-if IRC_RELAY_ENABLED then
-	print("[IRC] Module enabled")
-	include("extended/irc/sv_irc.lua")
-	include("modules/ircrelay/sv_ircrelay.lua")
-else
-	print("[IRC] Module disabled")
-end
-
 --Kill Rewards
 --include("modules/kill_rewards/sv_kill_rewards.lua")
 

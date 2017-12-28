@@ -24,15 +24,5 @@ COINS_PER_HUMAN = 5
 --Double XP for everything
 DOUBLE_XP = false
 
---IRC Relay
-IRC_RELAY_ENABLED = CreateConVar("zs_irc", "0", FCVAR_ARCHIVE + FCVAR_NOTIFY, "Enable IRC. Requires mapchange."):GetBool()
-cvars.AddChangeCallback("zs_irc", function(cvar, oldvalue, newvalue)
-	IRC_RELAY_ENABLED = (tonumber(newvalue) == 1)
-end)
-IRC_RELAY_NICK = "MrGreenZS"
-IRC_RELAY_SERVER = "irc.gtanet.com"
-IRC_RELAY_CHANNEL = "#mrgreen.zs"
-IRC_IDLE_CHANNEL = nil --"#mrgreen"
-
 --Supply Crate recharge time
 SUPPLYCRATE_RECHARGE_TIME = 180
