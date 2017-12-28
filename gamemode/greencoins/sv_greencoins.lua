@@ -111,7 +111,7 @@ local function SQLReceive(callbackarg, result, status, err)
 	end
 end
 
-function SQLQuery( query, callback, callbackarg )
+local function SQLQuery( query, callback, callbackarg )
 	if callback == nil then 
 		callback = SQLReceive
 	end
@@ -131,17 +131,18 @@ end
 
 -- --  Game functions -- -- 
 
-local function CreateGreenCoinsEntry( pl )
-	if not IsValid(pl) then return end
+local function CreateGreenCoinsEntry(pl)
+	if not IsValid(pl) then
+		return
+	end
 
-	local name = mysql.escape(pl:Name())
+	local name = pl:Name()
 	local steamid = pl:SteamID()
 	local currentdate = os.date("%Y-%m-%d %H:%M:%S")
-	local query = "INSERT INTO green_coins (steam_id, amount_current, steam_name, last_edit, created_on, valid) VALUES ('"..steamid.."', 0, '"..name.."', '"..currentdate.."', '"..currentdate.."', 1)"
+	local query = "INSERT INTO green_coins (steam_id, amount_current, steam_name, last_edit, created_on, valid) VALUES ('"..mysql.escape(steamid).."', 0, '"..mysql.escape(name).."', '"..mysql.escape(currentdate).."', '"..mysql.escape(currentdate).."', 1)"
 	
 	--  callback is RetrieveGreenCoins so the player data gets refreshed instantly
 	SQLQuery( query, RetrieveGreenCoins, pl )
-	
 end
 
 --  GC retrieving
@@ -178,7 +179,7 @@ function RetrieveGreenCoins( pl )
 	pl.EarnedGreenCoins = pl.EarnedGreenCoins or 0
 	
 	local steamid = pl:SteamID()
-	local query = "SELECT * FROM green_coins WHERE steam_id = '"..steamid.."' AND valid = 1"
+	local query = "SELECT * FROM green_coins WHERE steam_id = '"..mysql.escape(steamid).."' AND valid = 1"
 	SQLQuery( query, RetrieveGreenCoinsCallback, pl )
 end
 hook.Add("PlayerInitialSpawn","RetrieveGreenCoins",RetrieveGreenCoins)
@@ -221,11 +222,11 @@ function SaveGreenCoinsStep1Callback(pltab, result, status, err)
 		pl.GCData = result[1]
 		pl.EarnedGreenCoins = pl.EarnedGreenCoins or 0
 		pl.GCData["amount_current"] = math.max(0,pl.GCData["amount_current"] + pl.EarnedGreenCoins)
-		query = "UPDATE green_coins SET amount_current = "..pl.GCData["amount_current"]..", steam_name = '"..mysql.escape(pl:Name()).."', last_edit = '"..currentdate.."' WHERE steam_id = '"..pl:SteamID().."' AND valid = 1"
+		query = "UPDATE green_coins SET amount_current = "..pl.GCData["amount_current"]..", steam_name = '"..mysql.escape(pl:Name()).."', last_edit = '"..mysql.escape(currentdate).."' WHERE steam_id = '"..mysql.escape(pl:SteamID()).."' AND valid = 1"
 	else
 		local tab = result[1]
 		tab["amount_current"] = math.max(0,tab["amount_current"]+ pltab.earned)
-		query = "UPDATE green_coins SET amount_current = "..tab["amount_current"]..", steam_name = '"..mysql.escape(pltab.name).."', last_edit = '"..currentdate.."' WHERE steam_id = '"..pltab.steamid.."' AND valid = 1"
+		query = "UPDATE green_coins SET amount_current = "..tab["amount_current"]..", steam_name = '"..mysql.escape(pltab.name).."', last_edit = '"..mysql.escape(currentdate).."' WHERE steam_id = '"..mysql.escape(pltab.steamid).."' AND valid = 1"
 	end
 		
 	SQLQuery(query, SaveGreenCoinsStep2Callback, pltab)
@@ -277,7 +278,7 @@ function CheckGameConnection( pl )
 		return
 	end
 	
-	local query = "SELECT * FROM game_connections WHERE game_id_type = 'STEAM' AND game_id = '"..pl:SteamID().."' AND status = 'PENDING' AND valid = 1"
+	local query = "SELECT * FROM game_connections WHERE game_id_type = 'STEAM' AND game_id = '"..mysql.escape(pl:SteamID()).."' AND status = 'PENDING' AND valid = 1"
 	SQLQuery( query, GameConnectionCallback, pl )
 	pl.GameCChecked = true
 end
@@ -300,7 +301,7 @@ local function ConfirmStep2Callback( pl, result, status, err )
 		local currentdate = os.date("%Y-%m-%d %H:%M:%S")
 		
 		--  Invalidate the old record
-		local query = "UPDATE green_coins SET valid = 0, last_edit = '"..currentdate.."' WHERE steam_id = '"..pl:SteamID().."' AND ISNULL(forum_id) AND valid = 1"
+		local query = "UPDATE green_coins SET valid = 0, last_edit = '"..mysql.escape(currentdate).."' WHERE steam_id = '"..mysql.escape(pl:SteamID()).."' AND ISNULL(forum_id) AND valid = 1"
 		SQLQuery( query, ConfirmStep3Callback, pl )
 	else
 		WriteSQLLog("ERROR WHEN ATTEMPTING QUERY (CS2C) pl: "..pl:Name().."; status: "..tostring(status).."; error: "..tostring(err))
@@ -317,7 +318,7 @@ local function ConfirmStep1Callback( pl, result, status, err )
 		old_gc = old_gc + (pl.EarnedGreenCoins or 0)
 		
 		--  Connect the IDs and GC in one record
-		local query = "UPDATE green_coins SET steam_id = '"..pl:SteamID().."', amount_current = amount_current + "..old_gc..", last_edit = '"..currentdate.."' WHERE forum_id = "..pl.ForumIDRequested.." AND valid = 1"
+		local query = "UPDATE green_coins SET steam_id = '"..mysql.escape(pl:SteamID()).."', amount_current = amount_current + "..old_gc..", last_edit = '"..mysql.escape(currentdate).."' WHERE forum_id = "..pl.ForumIDRequested.." AND valid = 1"
 		SQLQuery( query, ConfirmStep2Callback, pl )
 	else
 		WriteSQLLog("ERROR WHEN ATTEMPTING QUERY (CS1C) pl: "..pl:Name().."; status: "..tostring(status).."; error: "..tostring(err))
@@ -332,7 +333,7 @@ local function ConnectionAnswerCallback( pl, result, status, err )
 		local currentdate = os.date("%Y-%m-%d %H:%M:%S")
 		if pl.ConnectionAccepted then
 			--  First: game connection confirmed, retrieve his old data.
-			local query = "SELECT * FROM green_coins WHERE steam_id = '"..pl:SteamID().."' AND ISNULL(forum_id) AND valid = 1"
+			local query = "SELECT * FROM green_coins WHERE steam_id = '"..mysql.escape(pl:SteamID()).."' AND ISNULL(forum_id) AND valid = 1"
 			SQLQuery( query, ConfirmStep1Callback, pl )
 		end
 	else
@@ -360,7 +361,7 @@ function ConnectionRequestAnswer( pl, command, args )
 
 	pl.ConnectionRequest = false
 
-	local query = "UPDATE game_connections SET status = '"..status.."', last_edit = '"..currentdate.."' WHERE game_id_type = 'STEAM' AND game_id = '"..pl:SteamID().."' AND status = 'PENDING' AND valid = 1"
+	local query = "UPDATE game_connections SET status = '"..mysql.escape(status).."', last_edit = '"..mysql.escape(currentdate).."' WHERE game_id_type = 'STEAM' AND game_id = '"..mysql.escape(pl:SteamID()).."' AND status = 'PENDING' AND valid = 1"
 	SQLQuery( query, ConnectionAnswerCallback, pl )
 
 end
