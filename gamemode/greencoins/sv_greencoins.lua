@@ -111,7 +111,7 @@ local function SQLReceive(callbackarg, result, status, err)
 	end
 end
 
-local function SQLQuery( query, callback, callbackarg )
+function SQLQuery( query, callback, callbackarg )
 	if callback == nil then 
 		callback = SQLReceive
 	end
