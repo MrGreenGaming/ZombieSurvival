@@ -36,7 +36,6 @@ SWEP.Secondary.Automatic = true
 SWEP.Secondary.Ammo = "none"
 SWEP.Secondary.Delay = 0.15
 SWEP.Type = "Tool"
-
 SWEP.Weight = 2
 function SWEP:InitializeClientsideModels()
 	self.VElements = {

@@ -770,8 +770,10 @@ function ApplyLoadout(pl, com, args)
 end
 concommand.Add("_applyloadout",ApplyLoadout)
 
-
+--Let's not allow players to restart the map.
+--[[
 local function RestartCommand( pl, cmd, args )
     RunConsoleCommand("changelevel", tostring(game.GetMap()))
 end
 concommand.Add( "zs_restartmap", RestartCommand )
+]]--

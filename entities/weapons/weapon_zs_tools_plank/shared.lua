@@ -25,6 +25,14 @@ if ( CLIENT ) then
 	
 end
 
+SWEP.BoardModels = {
+	Model("models/props_debris/wood_board04a.mdl"),
+	Model("models/props_debris/wood_board06a.mdl"),
+	Model("models/props_debris/wood_board02a.mdl"),
+	Model("models/props_debris/wood_board01a.mdl"),
+	Model("models/props_debris/wood_board07a.mdl")
+}
+
 SWEP.Author = "NECROSSIN"
 
 SWEP.ViewModel = "models/weapons/v_c4.mdl"
@@ -32,8 +40,9 @@ SWEP.ViewModel = "models/weapons/v_c4.mdl"
 SWEP.WorldModel = Model("models/props_debris/wood_board06a.mdl")
 
 
+SWEP.Type = "Tool"
+SWEP.Weight = 2
 SWEP.Slot = 5
-SWEP.SlotPos = 1 
 
 -- SWEP.Info = ""
 SWEP.HumanClass = "support"
@@ -95,7 +104,6 @@ function SWEP:OnInitialize()
 end
 
 function SWEP:OnDeploy()
-
 	self.Weapon:SendWeaponAnim( ACT_VM_DRAW )
 end
 
@@ -117,25 +125,31 @@ function SWEP:PrimaryAttack()
 	if SERVER then		
 		local ent = ents.Create("prop_physics_multiplayer")
 		if IsValid(ent) then
+			local ang = aimvec:Angle()
+			ang:RotateAroundAxis(ang:Forward(), 90)
 			ent:SetPos(tr.HitPos)
-			ent:SetAngles(aimvec:Angle())
-			ent:SetModel("models/props_debris/wood_board04a.mdl")
+			ent:SetAngles(ang)
+			ent:SetModel(table.Random(self.BoardModels))
 			ent:Spawn()
-			local hp = 600
-			--if self.Owner:GetPerk("_plankhp") then
+			local hp = 350
 			ent:SetHealth(hp)
 			ent.PropHealth = hp
 			ent.PropMaxHealth = hp
 			
 			local phys = ent:GetPhysicsObject()
 			if phys:IsValid() then
-				phys:SetMass(20)
-			
+				phys:SetMass(math.min(phys:GetMass(), 50))
 				phys:SetVelocityInstantaneous(self.Owner:GetVelocity())
 			end
 			ent:SetPhysicsAttacker(self.Owner)
 			self:TakePrimaryAmmo(1)
 		end
+		
+		if self:Clip1() == 0 then
+			DropWeapon(self.Owner)
+			self:Remove()
+		end		
+		
 	end
 	
 

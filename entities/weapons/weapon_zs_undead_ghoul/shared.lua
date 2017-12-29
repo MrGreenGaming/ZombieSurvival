@@ -2,7 +2,7 @@ AddCSLuaFile()
 --Made by Duby :P
 if CLIENT then
 	SWEP.PrintName = "Ghoul"
-	SWEP.ViewModelFOV = 70
+	SWEP.ViewModelFOV = 60
 
 
 	--SWEP.FakeArms = true
@@ -47,9 +47,9 @@ SWEP.Spawnable = true
 SWEP.AdminSpawnable = true
 SWEP.FakeArms = true
 
-SWEP.Primary.Duration = 1.4
+SWEP.Primary.Duration = 1.2
 SWEP.Primary.Delay = 0.6
-SWEP.Primary.Damage = 17
+SWEP.Primary.Damage = 19
 SWEP.Primary.Reach = 48
 SWEP.ShowViewModel = false
 SWEP.SwapAnims = false
@@ -65,7 +65,7 @@ function SWEP:Think()
 	if not IsValid(self.Owner) then
 		return
 	end
-	
+	--[[
 	if self.Owner:KeyReleased( IN_RELOAD  ) then
 		if SERVER then
 			canPlaceCrate = false
@@ -135,6 +135,8 @@ function SWEP:Think()
 			end
 		end
 	end	
+
+	]]--
 end
 
 
@@ -184,7 +186,7 @@ function SWEP:StartSecondaryAttack()
 	pl:Daze(2.5);	
 		
 	if SERVER then
-		pl:EmitSound("npc/fast_zombie/leap1.wav", 74, math.Rand(110, 130))
+		pl:EmitSound("npc/fast_zombie/leap1.wav", 70, math.Rand(112, 128))
 	end
 end
 
@@ -202,19 +204,21 @@ function SWEP:PerformSecondaryAttack()
 	local aimvec = pl:GetAimVector()
 	aimvec.z = math.max(aimvec.z, -0.7)
 	
-	
+	local aimang = pl:EyeAngles()
 	for i=1, 4 do
 		local ent = ents.Create("projectile_poisonpuke")
 		if ent:IsValid() then
-			local heading = (aimvec + VectorRand() * 0.15):GetNormal()
-			ent:SetPos(startpos + heading * 8)
+		
+			local ang = Angle(aimang.p, aimang.y, aimang.r)
+			ang:RotateAroundAxis(ang:Up(), math.Rand(-i * 2, i * 2))
+			ang:RotateAroundAxis(ang:Right(), math.Rand(-i * 2, i * 2))		
+			ent:SetPos(startpos)
 			ent:SetOwner(pl)
 			ent:Spawn()
 			ent.TeamID = pl:Team()
 			local phys = ent:GetPhysicsObject()
 			if phys:IsValid() then
-				--phys:SetVelocityInstantaneous(heading * math.Rand(310, 560))
-				phys:SetVelocityInstantaneous(heading * 380)
+				phys:SetVelocityInstantaneous(ang:Forward() * 400)
 			end
 			ent:SetPhysicsAttacker(pl)
 		end
@@ -224,6 +228,11 @@ function SWEP:PerformSecondaryAttack()
 
 	--pl:TakeDamage(self.Secondary.Damage, pl, self.Weapon)
 end
+
+function SWEP:PlayAttackSound()
+	self.Owner:EmitSound("npc/fast_zombie/leap1.wav", 74, math.Rand(110, 130))
+end
+
 
 function SWEP:Initialize()
 

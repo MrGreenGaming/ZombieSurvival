@@ -77,7 +77,7 @@ ZombieClasses[0] =
 
 
 InfectedZombiemodels = { 	
-"models/player/group01/Male_04.mdl"
+"models/player/corpse1.mdl"
 }
 --Obsolete class (not removed to prevent gamemode from breaking)
 ZombieClasses[1] =		--I re-added this class to add some diversity into the game. We need faster classes				
@@ -87,10 +87,10 @@ ZombieClasses[1] =		--I re-added this class to add some diversity into the game.
 	Tag = "zombie",	
 	Infliction = 0.0,
 	Revives = false,
-	Health = 200,
+	Health = 160,
 	MaxHealth = 400,
 	Bounty = 60,
-	SP = 4,
+	SP = 5,
 	Threshold = 99,	
 	SWEP = "weapon_zs_undead_ghoul",	
 	JumpPower = 220,
@@ -99,9 +99,9 @@ ZombieClasses[1] =		--I re-added this class to add some diversity into the game.
 	CanCrouch = true,
 	CanGib = true, 
 	Model = table.Random(InfectedZombiemodels), 
-	Speed = 165,	
+	Speed = 132,	
 	AngleFix = true,
-	DescriptionGameplay = { "> PRIMARY: Claws", "> SECONDARY: Throw flesh","> RELOAD: Create blood spawner on ground", "> FLESH: 10 health to zombies, 5 damage to props and humans", "> HEALTH: 200 ", "> SPEED: 165", "> DAMAGE: 17" },
+	DescriptionGameplay = { "> PRIMARY: Claws", "> SECONDARY: Throw flesh", "> FLESH: 10 health to zombies, 5 damage to props and humans", "> HEALTH: 160 ", "> SPEED: 132", "> DAMAGE: 19" },
 	DescriptionGameplay2 = { "TYPE: Back bone of a horde! " },
 	PainSounds = {
 		Sound("npc/zombiegreen/been_shot_1.wav"),

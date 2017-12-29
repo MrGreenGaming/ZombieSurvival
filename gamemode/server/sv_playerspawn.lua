@@ -900,7 +900,6 @@ function CalculateZombieHealth(pl)
 	local MaxHealth = Tab.Health
 	pl.SP = Tab.SP * 3
 	
-	-- Case 2: if there are only 2 zombies double their HP
 	if not pl:IsBossZombie() then
 		local allPlayers = player.GetAll()
 		local numPlayers = #allPlayers
@@ -908,11 +907,8 @@ function CalculateZombieHealth(pl)
 		local desiredzombies = math.max(1, math.ceil(numPlayers * UNDEAD_START_AMOUNT_PERCENTAGE))
 		if (team.NumPlayers(TEAM_UNDEAD) <= (desiredzombies)) then
 
-			MaxHealth = MaxHealth * 2.5
-			pl.SP = Tab.SP * 5 
-			if (pl:GetZombieClass() != 4 and pl:GetZombieClass() != 5) then
-				pl:SetMaterial("models/flesh")
-			end
+			MaxHealth = MaxHealth * 2.0
+			pl.SP = Tab.SP * 2
 		end
 	end
 	MaxHealth = math.Round(MaxHealth)
