@@ -68,8 +68,20 @@ end
 skillpoints.Clean = skillpoints.SetupSkillPoints
 util.AddNetworkString( "SPRequired" )
 
---Add nessesary amount of skill points
 function skillpoints.AddSkillPoints(pl, amount)
+	if amount == nil or amount == 0 or not IsValid(pl) or not pl:IsPlayer() then
+		return false
+	end
+	
+	pl:AddScore(amount)
+
+	return true
+end
+
+-- Used for kill rewards
+
+--Add nessesary amount of skill points
+--[[function skillpoints.AddSkillPoints(pl, amount)
 	if not amount or amount == 0 or not IsValid(pl) or not pl:IsPlayer() then
 		return false
 	end
@@ -178,7 +190,7 @@ function skillpoints.AddSkillPoints(pl, amount)
 		pl:EmitSound("items/gift_pickup.wav" )	
 	end		
 	return true
-end
+end]]--
 
 --Take nessesary amount of skill points
 function skillpoints.TakeSkillPoints(pl, amount)

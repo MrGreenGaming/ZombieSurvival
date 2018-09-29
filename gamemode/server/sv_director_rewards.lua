@@ -3,7 +3,7 @@
 
 -- Score translation table
 
-local RewardsTable = {
+--[[local RewardsTable = {
 	[5] = { "weapon_zs_glock3", "weapon_zs_deagle", "weapon_zs_fiveseven", "weapon_zs_magnum" },
 	[15] = { "weapon_zs_tmp", "weapon_zs_mp5", "weapon_zs_p90", "weapon_zs_ump", "weapon_zs_smg" },
 	[25] = { "weapon_zs_aug", "weapon_zs_galil", "weapon_zs_ak47", "weapon_zs_m4a1" },
@@ -102,7 +102,7 @@ function GM:CheckHumanScore ( pl )
 	end
 	
 	Debug ( "[DIRECTOR] Finished checking score for player "..tostring ( pl )..". Reward given is "..tostring ( Reward or "NONE" ) )
-end
+end]]--
 
 --[==[-------------------------------------------------------------
           Called from the client - delivers ammunition

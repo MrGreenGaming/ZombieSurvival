@@ -29,6 +29,7 @@ include("shared/sh_gamemode.lua")
 --[=[---------------------------------------------------------
 	     Include the shared files
 ---------------------------------------------------------]=]
+include("sh_translate.lua")
 include("shared/obj_player_extend.lua")
 include("shared/obj_weapon_extend.lua")
 include("shared/obj_entity_extend.lua")
@@ -634,7 +635,7 @@ end
 
 function GM:GetRagdollEyes(pl)
 	local Ragdoll = pl:GetRagdollEntity()
-	if not Ragdoll then return end
+	if not Ragdoll:IsValid() then return end
 
 	local att = Ragdoll:GetAttachment(Ragdoll:LookupAttachment("eyes"))
 	if att then

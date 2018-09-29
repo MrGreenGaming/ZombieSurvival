@@ -709,7 +709,7 @@ function DrawSkillShop()
 			return
 		end
 
-		draw.SimpleTextOutlined("Buy ".. AutoBuyAmmoData.Name .." ammo for ".. AutoBuyAmmoData.Price .." SP", "ArialBoldSix", AmmoButtonW / 2, CloseButtonH / 2, TextColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
+		draw.SimpleTextOutlined("Buy ".. AutoBuyAmmoData.Name .." ammo for ".. AutoBuyAmmoData.Price .." SP", "ArialBoldFour", AmmoButtonW / 2, CloseButtonH / 2, TextColor, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0, 0, 0, 255))
 	end
 	btnAutoBuyAmmo.DoClick = function()
 		RunConsoleCommand("zs_skillshop_buy", "current-ammo")
@@ -752,7 +752,7 @@ function DrawSkillShop()
 			return
 		end
 
-		draw.SimpleTextOutlined("Buy ".. BuyPointsAmount:GetInt() .."SP for ".. BuyPointsCost:GetInt() .."GC", "ArialEight", SPLabelW/2, CTPHeight/2, Color (255,255,255,255), TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,255) )
+		draw.SimpleTextOutlined("Buy ".. BuyPointsAmount:GetInt() .."SP for ".. BuyPointsCost:GetInt() .."GC", "ArialBoldFour", SPLabelW/2, CTPHeight/2, Color (255,255,255,255), TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,255) )
 	end
 	
 	btnCoinsToPoints.DoClick = function()

@@ -90,7 +90,7 @@ end
 function GM:MakeBlankMapList()
 		
 	local filename = "zombiesurvival/zsmapcycle.txt"	
-	local str = file.Read("../mapcycle.txt")
+	local str = file.Read("zombiesurvival/addmaps.txt")
 	
 	if (str == nil) then return end
 	

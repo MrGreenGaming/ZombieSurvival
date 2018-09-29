@@ -20,7 +20,8 @@ mysql.Warnings = {
 	["verified"] = "[SQL] Database verified",
 }
 
-if file.Exists("bin/gmsv_tmysql4_*.dll", "LUA") or file.Exists("bin/gmsv_mysqloo_*.dll", "LUA") then
+if --[[file.Exists("bin/gmsv_tmysql4_*.dll", "LUA") or]]-- 
+file.Exists("bin/gmsv_mysqloo_*.dll", "LUA") then
 	-- Try to load module
 	require("tmysql4")
 	mysql.bLoaded = true
@@ -84,9 +85,9 @@ end
 local mysqlDetails = {}
 mysqlDetails.HostName = CreateConVar("zs_sql_hostname", "127.0.0.1", {FCVAR_PROTECTED}, "Database Host Name")
 mysqlDetails.HostPort = CreateConVar("zs_sql_hostport", "3306", {FCVAR_PROTECTED}, "Database Host Port")
-mysqlDetails.User = CreateConVar("zs_sql_username", "", {FCVAR_PROTECTED}, "Database Login Username")
+mysqlDetails.User = CreateConVar("zs_sql_username", "mrgreen_gczs", {FCVAR_PROTECTED}, "Database Login Username")
 mysqlDetails.Pass = CreateConVar("zs_sql_password", "", {FCVAR_PROTECTED}, "Database Login Password")
-mysqlDetails.Name = CreateConVar("zs_sql_database", "", {FCVAR_PROTECTED}, "Database Name")
+mysqlDetails.Name = CreateConVar("zs_sql_database", "mrgreen_gczs", {FCVAR_PROTECTED}, "Database Name")
 
 -- Connect function
 mysql.Connect = function()	
@@ -137,6 +138,7 @@ mysql.CheckCallback = function(Table, Status, sError)
 		return
 	end
 
+	Debug(sError)
 	Debug(mysql.Warnings["no_connection"])
 	mysql.bConnected = false
 end		
