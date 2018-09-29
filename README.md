@@ -48,4 +48,4 @@ if you want to upload homemade files to server follow the steps:
 
 
 Max crates are set to 3 but can be altered in zombiesurvival\gamemode\modules\zs_options_shared.lua
-Just look for MAXIMUM_CRATES 
+Just look for MAXIMUM_CRATES
