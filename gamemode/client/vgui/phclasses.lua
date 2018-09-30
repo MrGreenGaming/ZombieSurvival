@@ -132,7 +132,7 @@ function DrawLoadoutMenu()
 		if (MySelf:NextRankXP() - MySelf:GetXP() > 0) then
 			xp = MySelf:NextRankXP() - MySelf:GetXP()
 		end		
-		draw.SimpleText("GreenCoins: " .. MySelf:GreenCoins() .. " | Rank " .. MySelf:GetRank()  .. " | " ..  xp .. " XP Left","Trebuchet24", (frameSizeWidth * 0.4)*0.14, (frameSizeHeight * 0.09)*0.5, Color(248,253,248,235), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)				
+		draw.SimpleText(translate.Get"classmenu_gcammount" .. MySelf:GreenCoins() .. " | "..translate.Get("classmenu_rank").." " .. MySelf:GetRank()  .. " | " ..  xp .. " "..translate.Get("classmenu_xpleft"),"Trebuchet24", (frameSizeWidth * 0.4)*0.14, (frameSizeHeight * 0.09)*0.5, Color(248,253,248,235), TEXT_ALIGN_LEFT, TEXT_ALIGN_CENTER)				
 	end
 	
 	ProfileText:SetFont("Trebuchet24")
@@ -184,7 +184,7 @@ function DrawLoadoutMenu()
 	
 	buttonWeb.PaintOver = function ()
 	
-		draw.DrawText("Forums", "Trebuchet24", (frameSizeWidth * 0.11) * 0.5, ScaleH(12),  Color( 95, 240, 110, 255 ), TEXT_ALIGN_CENTER)	
+		draw.DrawText(translate.Get("classmenu_forums"), "Trebuchet24", (frameSizeWidth * 0.11) * 0.5, ScaleH(12),  Color( 95, 240, 110, 255 ), TEXT_ALIGN_CENTER)	
 		
 		if buttonWeb.Overed then
 			surface.SetDrawColor(50, 255, 60, math.Clamp(math.sin(CurTime()*5)*100 + 100,40,255))
@@ -233,7 +233,7 @@ function DrawLoadoutMenu()
 		buttonClass[k]:SetTextColor( Color( 255, 255, 255 ) )
 		buttonClass[k]:SetPos( frameSizeWidth*0.035 + ((k-1)*(buttonClassWidth)), frameSizeHeight*0.03)
 		buttonClass[k]:SetSize( buttonClassWidth, buttonClassHeight)
-		buttonClass[k]:SetTooltip(v.Name .. "\n\n [BASE PERKS]\n" .. v.Description .. "\n\n [BONUS PERKS]\n" .. string.format(v.CoefDesc,unpack( v.Coef )))		
+		buttonClass[k]:SetTooltip(v.Name .. "\n\n "..translate.Get("classmenu_bperks").."\n" .. v.Description .. "\n\n "..translate.Get("classmenu_bonuperks").." \n" .. string.format(v.CoefDesc,unpack( v.Coef )))		
 		
 		buttonClass[k].Paint = function( self, w, h )	
 			draw.RoundedBox( 0, 0, 0, w, h, v.Colour )
@@ -320,7 +320,7 @@ function DrawLoadoutMenu()
 			elseif buttonClass[k].Active then
 				surface.SetDrawColor(50, 255, 50, math.Clamp(math.sin(CurTime()*5)*100 + 150,40,255))
 				surface.DrawOutlinedRect( 0, 0, buttonClassWidth, buttonClassHeight)
-				frameDescriptionText = "Starter equipment: " .. v.Equipment
+				frameDescriptionText = translate.Get("classmenu_startequip") .. v.Equipment
 			end
 		end
 		
@@ -411,7 +411,7 @@ function DrawLoadoutMenu()
 	end	
 	
 	buttonSpawn.PaintOver = function ()
-		draw.SimpleTextOutlined("Spawn ".. math.Round(WARMUPTIME - CurTime()), "Trebuchet24", buttonWidth/2, buttonHeight/2, Color (250,255,250,230), TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,230))
+		draw.SimpleTextOutlined(translate.Get("classmenu_spawn").." ".. math.Round(WARMUPTIME - CurTime()), "Trebuchet24", buttonWidth/2, buttonHeight/2, Color (250,255,250,230), TEXT_ALIGN_CENTER,TEXT_ALIGN_CENTER,1,Color(0,0,0,230))
 		if buttonSpawn.Overed then
 			surface.SetDrawColor(50, 255, 60, math.Clamp(math.sin(CurTime()*12)*100 + 100,40,255))
 		else	
@@ -508,7 +508,7 @@ function drawPerks(Perk, y, numPerks)
 				if (MySelf:GetRank() < Perk[i].Rank) then 
 					surface.SetDrawColor(255, 50, 50,math.Clamp(math.sin(CurTime()*3)*100 + 20,40,255))
 					surface.DrawRect(0, 0, buttonPerkWidth, buttonPerkHeight)	
-					Perk[i]:SetTooltip("[UNLOCKED AT RANK " .. Perk[i].Rank .. "]\n" ..  Perk[i].Perk.Name .. "\n" .. Perk[i].Perk.Description)						
+					Perk[i]:SetTooltip(translate.Get("classmenu_unlockedat") .. Perk[i].Rank .. "]\n" ..  Perk[i].Perk.Name .. "\n" .. Perk[i].Perk.Description)						
 					return
 				end		
 								
