@@ -10,7 +10,7 @@ If you don't meet the requirements then there WILL be errors. You'll need an:
 
 [Nitrous-Networks](https://nitrous-networks.com/game-servers) - Has all the above supported.
 
-## Installing Mr Green's Zombie Survival.
+## Installing Mr Green's Zombie Survival
 
 Upload the gamemode onto your server.
 
