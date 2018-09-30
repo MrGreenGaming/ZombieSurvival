@@ -689,7 +689,7 @@ function CalculatePlayerLoadout(pl)
 		for k,v in pairs(pl.Loadout) do
 			pl:Give(tostring(v))				
 		end
-		pl:ChatPrint("You are a Medic")
+		pl:ChatPrint(translate.Get("chat_spawn_medic"))
 
 		
 		pl:GiveAmmo(100, "Battery" )	
@@ -716,7 +716,7 @@ function CalculatePlayerLoadout(pl)
 		for k,v in pairs(pl.Loadout) do
 			pl:Give(tostring(v))				
 		end		
-		pl:ChatPrint("You are a Support")
+		pl:ChatPrint(translate.Get("chat_spawn_support"))
 				
 	elseif pl:GetPerk("Engineer") then
 		pl.Loadout = table.Copy(engineer)
@@ -730,10 +730,10 @@ function CalculatePlayerLoadout(pl)
 		for k,v in pairs(pl.Loadout) do
 			pl:Give(tostring(v))				
 		end
-		pl:ChatPrint("You are an Engineer")
+		pl:ChatPrint(translate.Get("chat_spawn_engineer"))
 		
 	elseif pl:GetPerk("Commando") then
-		pl:ChatPrint("You are a Commando")
+		pl:ChatPrint(translate.Get("chat_spawn_commando"))
 		if pl:GetPerk("commando_defender") then
 			pl:Give("weapon_zs_defender")		
 			pl:GiveAmmo(60, "ar2")			
@@ -754,7 +754,7 @@ function CalculatePlayerLoadout(pl)
 		for k,v in pairs(pl.Loadout) do
 			pl:Give(tostring(v))				
 		end
-		pl:ChatPrint("You are a Berserker")
+		pl:ChatPrint(translate.Get("chat_spawn_berserker"))
 	
 	elseif pl:GetPerk("Sharpshooter") then
 		pl.Loadout = table.Copy(sharpshooter)
@@ -765,7 +765,7 @@ function CalculatePlayerLoadout(pl)
 		for k,v in pairs(pl.Loadout) do
 			pl:Give(tostring(v))				
 		end		
-		pl:ChatPrint("You are a Sharpshooter")
+		pl:ChatPrint(translate.Get("chat_spawn_sharpshooter"))
 			
 	
 	elseif pl:GetPerk("Pyro") then
@@ -777,7 +777,7 @@ function CalculatePlayerLoadout(pl)
 		for k,v in pairs(pl.Loadout) do
 			pl:Give(tostring(v))				
 		end		
-		pl:ChatPrint("You are a Pyro")
+		pl:ChatPrint(translate.Get("chat_spawn_piro"))
 		pl:GiveAmmo( 80, "alyxgun" )			
 		
 		
@@ -790,7 +790,7 @@ function CalculatePlayerLoadout(pl)
 		for k,v in pairs(pl.Loadout) do
 			pl:Give(tostring(v))				
 		end		
-		pl:ChatPrint("You are a Medic")
+		pl:ChatPrint(translate.Get("chat_spawn_medic"))
 		pl:SetPerk("Medic")
 
 		
