@@ -29,7 +29,8 @@ function ENT:Initialize()
 		-- 		ent:Input("onpickedup", owner, object, "")
 		-- 	end
 		-- end
-		--object:SetRenderMode(RENDERMODE_TRANSALPHA) 
+		object:SetRenderMode(RENDERMODE_TRANSALPHA)
+		object:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
 		--local c = object:GetColor()
 		--object.r,object.g,object.b,object.a = c.r,c.g,c.b,c.a
 		--object:SetColor(Color(object.r,object.g,object.b,190))
