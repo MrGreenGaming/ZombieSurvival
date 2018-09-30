@@ -39,6 +39,8 @@ function ENT:Draw()
 
 		draw.SimpleTextOutlined(text, "ArialBoldFour", 0, 20, Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,250)) --New
 		
+		cam.End3D2D()
+		
 		elseif IsValid(MySelf) and MySelf:Team() == TEAM_UNDEAD then
 
  		draw.SimpleTextOutlined("This can't be broken!", "ArialBoldFour", 0, 45, Color(255,255,255,250), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,200)) --New
