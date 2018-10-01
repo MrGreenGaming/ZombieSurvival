@@ -39,7 +39,7 @@ hook.Add("Initialize", "NixTheLag", function()
 		hook.Remove("PostDrawEffects", "RenderWidgets")
 
 		-- Could screw with people's point shops but whatever.
-		--hook.Remove("PostDrawEffects", "RenderHalos")
+		hook.Remove("PostDrawEffects", "RenderHalos")
 	end
 end)
 
