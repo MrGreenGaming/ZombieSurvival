@@ -1,27 +1,32 @@
--- © Limetric Studios ( www.limetricstudios.com ) -- All rights reserved.
+-- Â© Limetric Studios ( www.limetricstudios.com ) -- All rights reserved.
 -- See LICENSE.txt for license information
 
 AddCSLuaFile()
 
 if ( CLIENT ) then
 	SWEP.ShowViewModel = false
-	SWEP.ShowWorldModel = true
+	SWEP.ShowWorldModel = false
 
 	SWEP.VElements = {
-	--["plank"] = { type = "Model", model = "models/weapons/w_plank.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.359, 1.521, 0), angle = Angle(0, 0, 180), size = Vector(1.23, 1.23, 1.23), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-	["plank"] = { type = "Model", model = "models/weapons/w_plank.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(0.359, 2.521, 0), angle = Angle(0, 0, 180), size = Vector(1.23, 1.23, 1.23), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	["plank"] = { type = "Model", model = "models/Gibs/wood_gib01d.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.167, 1.851, 3.803), angle = Angle(-86.173, -93.791, 0.182), size = Vector(1.388, 1.388, 1.388), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 	}
-	
-	killicon.AddFont( "weapon_zs_plank", "ZSKillicons", "e", Color(255, 255, 255, 255 ) )
-end
 
+	SWEP.WElements = {
+	["plank"] = { type = "Model", model = "models/Gibs/wood_gib01d.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(2.329, 0.851, -5.863), angle = Angle(-78.698, -180, 0), size = Vector(0.976, 0.976, 0.976), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	}
+
+
+	killicon.AddFont( "weapon_zs_melee_plank", "ZSKillicons", "e", Color(255, 255, 255, 255 ) )
+end
 
 -- Melee base
 SWEP.Base = "weapon_zs_melee_base"
 
+-- Models paths
+SWEP.Author = "Deluvas"
+SWEP.ViewModel = Model ( "models/weapons/c_crowbar.mdl" )
 SWEP.UseHands = true
-SWEP.ViewModel = "models/weapons/c_crowbar.mdl"
-SWEP.WorldModel = Model ( "models/weapons/w_plank.mdl" )
+SWEP.WorldModel = Model ( "models/weapons/w_knife_t.mdl" )
 
 SWEP.PrintName = "Plank"
 SWEP.Type = "Melee"
