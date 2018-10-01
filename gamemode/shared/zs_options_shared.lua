@@ -466,7 +466,7 @@ GM.Perks = {
 	
 	-- Bonus Perks
 	
-	["Medic"] = {Name = translate.Get("classhuman_medic"),		  		
+	["Medic"] = {Name = "Medic",		  		
 		Equipment = translate.Get("classhuman_medic_equip"),
 		Description = translate.Get("classhuman_medic_base_perks"),
 		CoefDesc = " +%G%% Movement speed\n +%i%% Pistol damage\n +%i%% Medi damage\n +%i%% Poison resistance\n +%i%% Undead damage resistance\n +%i%% Medical efficiency\n +%i%% Medical ammo received\n +%i Medical ammo on spawn",
@@ -476,7 +476,7 @@ GM.Perks = {
 		Colour = Color(100, 230, 130,32),
 		Model = "models/player/group03m/female_03.mdl"},
 		
-	["Commando"] = {Name = translate.Get("classhuman_commando"),   		
+	["Commando"] = {Name = "Commando",   		
 		Equipment = translate.Get("classhuman_commando_equip"), 
 		Description = translate.Get("classhuman_commando_base_perks"),
 		CoefDesc = " +%i%% Health\n +%i%% Clip size\n +%i%% assault rifle damage",
@@ -486,7 +486,7 @@ GM.Perks = {
 		Colour = Color(188, 168, 255,32),
 		Model = "models/player/combine_soldier.mdl"},		
 		
-	["Support"] = {Name = translate.Get("classhuman_support"),    		
+	["Support"] = {Name = "Support",    		
 		Equipment = translate.Get("classhuman_support_equip"), 			
 		Description = translate.Get("classhuman_support_base_perks"),
 		CoefDesc = " +%i%% SMG damage\n +%i%% Shotgun damage \n +%i%% Nail health\n +%G Repair points\n +%i Nails\n +%i%% Ammo received\n +%G Ammo in ammo pack",
@@ -496,7 +496,7 @@ GM.Perks = {
 		Colour = Color(255, 182, 238,32),
 		Model = "models/player/arctic.mdl"},		
 		
-	["Berserker"] = {Name = translate.Get("classhuman_berserker"), 		
+	["Berserker"] = {Name = "Berserker", 		
 		Equipment = translate.Get("classhuman_berserker_equip"), 				
 		Description = translate.Get("classhuman_berserker_base_perks"),
 		CoefDesc = " +%i Health from melee kill\n +%G%% Movement speed\n  +%i Health",
@@ -506,7 +506,7 @@ GM.Perks = {
 		Colour = Color(255, 141, 147,32),
 		Model = "models/player/monk.mdl"},		
 		
-	["Engineer"] = {Name = translate.Get("classhuman_engineer"),   		
+	["Engineer"] = {Name = "Engineer",   		
 		Equipment = translate.Get("classhuman_engineer_equip"), 	
 		Description = translate.Get("classhuman_engineer_base_perks"),
 		CoefDesc = " +%G%% Turret damage\n +%G%% Turret recharge rate\n +%i%% Turret health\n +%i%% Turret ammo capacity\n +%i Pulse weapon capacity\n +%i%% Pulse weapon damage\n +%i%% Pulse weapon recharge rate\n +%i%% C4 damage\n +%i%% C4 radius",
@@ -516,7 +516,7 @@ GM.Perks = {
 		Colour = Color(30, 228, 255,32),
 		Model = "models/player/alyx.mdl"},
 		
-	["Sharpshooter"] = {Name = translate.Get("classhuman_sharpshooter"), 
+	["Sharpshooter"] = {Name = "Sharpshooter", 
 		Equipment = translate.Get("classhuman_sharpshooter_equip"), 	
 		Description = translate.Get("classhuman_sharpshooter_base_perks"),
 		CoefDesc = " +%i%% Sniper damage\n +%i%% Headshot damage\n +%i%% Accuracy",
@@ -526,7 +526,7 @@ GM.Perks = {
 		Colour = Color(127, 181, 120,32),
 		Model = "models/player/odessa.mdl"},		
 		
-	["Pyro"] = {Name = translate.Get("classhuman_pyro"),				
+	["Pyro"] = {Name = "Pyro",				
 		Equipment = translate.Get("classhuman_pyro_equip"), 				
 		Description = translate.Get("classhuman_pyro_base_perks"),
 		CoefDesc = " +%i Burn damage\n +%i Burn chance\n +%i Scorch damage",
