@@ -1,4 +1,4 @@
--- © Limetric Studios ( www.limetricstudios.com ) -- All rights reserved.
+-- Â© Limetric Studios ( www.limetricstudios.com ) -- All rights reserved.
 -- See LICENSE.txt for license information
 
 AddCSLuaFile()
@@ -8,11 +8,16 @@ SWEP.Base = "weapon_zs_melee_base"
 
 if CLIENT then
 	SWEP.ShowViewModel = false
-	SWEP.ShowWorldModel = true
+	SWEP.ShowWorldModel = false
 
 	SWEP.VElements = {
 		["keyboard"] = { type = "Model", model = "models/props/cs_office/computer_keyboard.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(7.147, 1.246, -6.666), angle = Angle(0, -180, -90), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 	}
+	SWEP.WElements = {
+	["keyboard"] = { type = "Model", model = "models/props/cs_office/computer_keyboard.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(3.302, 5.831, -6.351), angle = Angle(-175.459, -100.792, -96.282), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
+	}
+
+
 
 	SWEP.ViewModelBoneMods = {
 		["ValveBiped.Bip01_R_Finger31"] = { scale = Vector(1, 1, 1), pos = Vector(0, 0, 0), angle = Angle(0, 59.13, 0) },
@@ -32,17 +37,14 @@ if CLIENT then
 		["ValveBiped.Bip01_R_Finger0"] = { scale = Vector(1, 1, 1), pos = Vector(0, 0, 0), angle = Angle(0, -5.218, 0) }
 	}
 
-	--[[SWEP.WElements = {
-		["keyboard"] = { type = "Model", model = "models/props/cs_office/computer_keyboard.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(6.908, 1.09, -6.909), angle = Angle(-0.819, -22.091, 105.544), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-	}]]
-
 	killicon.AddFont("weapon_zs_melee_keyboard", "ZSKillicons", "d", Color(255, 255, 255, 255))
 end
 
 -- Model paths
+SWEP.Author = "Deluvas"
 SWEP.ViewModel = Model("models/weapons/c_crowbar.mdl")
 SWEP.UseHands = true
-SWEP.WorldModel = Model("models/weapons/w_keyboard.mdl")
+SWEP.WorldModel = Model("models/weapons/w_knife_t.mdl")
 
 -- Name and fov
 SWEP.PrintName = "Keyboard"
