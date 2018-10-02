@@ -29,7 +29,7 @@ Upload zs_cabin_v2 map and other zs_ or zm_ maps.
 
 Go to zombiesurvival/gamemode/shared/sh_maps.lua to add and/or remove maps from the list so they match what's hosted on the server.
 
-Go to garrysmod/settings/user.txt and add yourself to superadmin.
+Go to garrysmod/settings/users.txt and add yourself to superadmin.
 
 Start the server and join.
 
