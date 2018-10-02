@@ -563,12 +563,19 @@ end
 
 function hud.DrawInflictionPanel()
 	local WaveX,WaveY = 12,12
+	local TableUpdated = 0	
 	
 	local text1x, text1y = WaveX+ScaleW(7), WaveY+5
 		
 	-- zero wave
+	
 	if ServerTime() <= WARMUPTIME then		
 		local timleft = math.max(0, WARMUPTIME - ServerTime())
+	if TableUpdated < CurTime() then
+			TableUpdated = CurTime() + 1
+			hud.UpdateHumanTable()	
+		end
+		hud.DrawZeroWaveMessage()	
 
 		if timleft < 10 then
 			local glow = math.sin(RealTime() * 8) * 200 + 255
@@ -599,6 +606,90 @@ function hud.DrawInflictionPanel()
 		draw.SimpleTextOutlined(cached_humans, "ArialBoldSeven", text1x+space1+space2+space3+2, text1y, team.GetColor(TEAM_HUMAN), TEXT_ALIGN_LEFT, TEXT_ALIGN_LEFT,1, Color(0,0,0,255))
     end
 end
+
+local humans = team.GetPlayers(TEAM_HUMAN)			
+function hud.UpdateHumanTable()
+
+	humans = team.GetPlayers(TEAM_HUMAN)		
+
+	for k,v in pairs(humans) do
+	
+		local pos = v:GetPos()
+		local closest = 9999999
+		for _, gasses in pairs(ents.FindByClass("zs_poisongasses")) do	
+			local dist = gasses:GetPos():Distance(pos)
+			if dist < closest then
+				closest = dist
+			end
+		end
+		v.GasDistance = closest	
+	end
+	table.sort(humans,GAMEMODE.ZombieSpawnDistanceSort)		
+end
+
+function hud.DrawZeroWaveMessage()
+		
+		local curtime = CurTime()
+		
+		if CurTime() <= WARMUPTIME then
+		
+			surface.SetFont("ArialBoldSeven")
+			local txtw, txth = surface.GetTextSize("Hi")
+			draw.SimpleTextOutlined("Humans closest to a zombie gas will become a zombie!", "ssNewAmmoFont7", ScrW() * 0.5, ScrH() * 0.65 - txth, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
+
+			local vols = 0
+			local gastab = {}
+			
+			local voltab = {}
+			local allplayers = player.GetAll()
+			
+			local desiredzombies = math.max(UNDEAD_START_AMOUNT, math.ceil(#allplayers * UNDEAD_START_AMOUNT_PERCENTAGE))
+				
+			for _, pl in pairs(allplayers) do
+				if pl:Team() == TEAM_UNDEAD then
+					vols = vols + 1
+					table.insert(voltab, pl)
+				end
+			end
+			
+			local y = ScrH() * 0.63 + txth * 2
+			for j = 1, #humans do
+				--if humans[j].ToBeZombie then	
+				
+				if j > vols + desiredzombies then continue end
+				draw.SimpleTextOutlined(humans[j]:Name(), "ssNewAmmoFont7", ScrW() * 0.5, y	, COLOR_GRAY, TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,220))
+					--humans[j].ToBeZombie = false				
+				--end
+				--print("UPDATE");
+				--print(humans[j]:Name())
+				--print(humans[j].GasDistance)
+
+				y = y + txth * 1.23
+			end		
+			
+
+			--local desiredzombies = math.max(1, math.ceil(numplayers * WAVE_ONE_ZOMBIES))
+			
+
+			local y = ScrH() * 0.8 + txth * 1.25
+
+
+			
+		--	draw.SimpleTextOutlined("Number of initial zombies this game ("..UNDEAD_START_AMOUNT * 100 .."%): "..desiredzombies, "ssNewAmmoFont7", ScrW() * 0.5, ScrH() * 0.75, COLOR_GRAY, TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,255))
+			draw.SimpleTextOutlined("Initial zombie count: "..desiredzombies.."", "NewZombieFont15", ScrW() * 0.5, ScrH() * 0.65, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
+			y = ScrH() * 0.65 + txth * 2
+			--draw.SimpleTextOutlined("Volunteers: "..vols, "ssNewAmmoFont6.5", ScrW() * 0.5, ScrH() * 0.65 + txth, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
+			surface.SetFont("Default")
+			txtw, txth = surface.GetTextSize("Hi")
+			for _, pl in pairs(voltab) do
+				if ScrH() - txth <= y then break else
+					draw.SimpleTextOutlined(pl:Name(), "ssNewAmmoFont6.5", ScrW() * 0.5, y, Color(255,255,255,150), TEXT_ALIGN_CENTER , TEXT_ALIGN_CENTER,1, Color(0,0,0,150))
+					y = y + txth * 2
+			end
+		end			
+	end
+end
+
 
 hud.GradientExample = surface.GetTextureID( "gui/center_gradient" )
 
