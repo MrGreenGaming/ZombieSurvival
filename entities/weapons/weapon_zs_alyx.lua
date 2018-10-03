@@ -28,10 +28,10 @@ SWEP.AdminSpawnable             = true
 SWEP.Primary.Sound  = Sound("weapons/alyxgun/fire0".. math.random(1,2) ..".wav")
 SWEP.ReloadSound = Sound("Weapon_Pistol.Reload")
 SWEP.Primary.Recoil  = 1.2
-SWEP.Primary.Damage = 15
+SWEP.Primary.Damage = 8
 SWEP.Primary.NumShots           = 1
 SWEP.Primary.ClipSize           = 15
-SWEP.Primary.Delay                      = 0.15
+SWEP.Primary.Delay                      = 0.20
 SWEP.Primary.Automatic = true
 SWEP.Primary.Ammo                       = "alyxgun"
 
