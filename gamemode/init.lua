@@ -62,6 +62,7 @@ AddCSLuaFile("modules/news/cl_news.lua")
           Add them to download list (Shared)
 ---------------------------------------------------------]=]
 AddCSLuaFile("shared.lua")
+AddCSLuaFile("shared/sh_cratemaps.lua")
 AddCSLuaFile("sh_translate.lua")
 AddCSLuaFile("shared/sh_dps_sys.lua")
 AddCSLuaFile("shared/obj_player_extend.lua")

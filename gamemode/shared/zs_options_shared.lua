@@ -595,7 +595,7 @@ CARRY_SPEEDLOSS_MINSPEED = 160
 -- -- -- -- -- -- -- -- /
 
 -- Maximum crates per map
-MAXIMUM_CRATES = 3 -- math.random(2, 3)
+MAXIMUM_CRATES = GM:GetCratesPerMap(game.GetMap()) or GM.CrateFallBack
 
 -- Use Zombie Survival's custom footstep sounds? I'm not sure how bad it might lag considering you're potentially sending a lot of data on heavily packed servers.
 CUSTOM_FOOTSTEPS = false
