@@ -29,10 +29,10 @@ function ENT:Initialize()
 		-- 		ent:Input("onpickedup", owner, object, "")
 		-- 	end
 		-- end
-		--object:SetRenderMode(RENDERMODE_TRANSALPHA) 
-		--local c = object:GetColor()
-		--object.r,object.g,object.b,object.a = c.r,c.g,c.b,c.a
-		--object:SetColor(Color(object.r,object.g,object.b,190))
+		object:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
+		local c = object:GetColor()
+		object.r,object.g,object.b,object.a = c.r,c.g,c.b,c.a
+		object:SetColor(Color(object.r,object.g,object.b,190))
 		local objectphys = object:GetPhysicsObject()
 		if objectphys:IsValid() then
 			objectphys:AddGameFlag(FVPHYSICS_PLAYER_HELD)
@@ -103,7 +103,6 @@ function ENT:OnRemove()
 				wep:SendWeaponAnim(ACT_VM_DRAW)
 			end
 		end
-
 		owner:DrawWorldModel(true)
 		owner:DrawViewModel(true)
 	end
@@ -113,6 +112,7 @@ function ENT:OnRemove()
 		--[=[local timnam = "ENABLECOLLISIONS"..tostring(object)
 		timer.Create(timnam, 0, 0, EnableCollisions, object, 16, nil, timnam)]=]
 		--object:SetColor(Color(object.r,object.g,object.b,object.a))
+		object:SetCollisionGroup(COLLISION_GROUP_NONE)
 		local objectphys = object:GetPhysicsObject()
 		if objectphys:IsValid() then
 			objectphys:ClearGameFlag(FVPHYSICS_PLAYER_HELD)

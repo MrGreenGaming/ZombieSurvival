@@ -357,118 +357,118 @@ GM.Perks = {
 	-- Slot 4: Global
 	-- Slot 5: Classes
 	
-		["global_ammo"] = {Name = "Ammo", Description = "Receive ammunition from kills instead of ammo drops\nGives ammo to holding weapon only", Class = "Global", Slot = 4, Rank = 0, Material = "vgui/achievements/kill_enemy_reloading"},
-		["global_sp"] = {Name = "SP", Description = "+200% SP from kills\n0 SP from inflicting damage", Class = "Global", Slot = 4, Rank = 0, Material = "vgui/gfx/vgui/last_match_miscellaneous"},
-		["global_none"] = {Name = "None", Description = "", Class = "Global", Slot = 4, Rank = 0, Material = ""},
+		["global_ammo"] = {Name = translate.Get("perk_ammo"), Description = translate.Get("perk_ammo_description"), Class = "Global", Slot = 4, Rank = 0, Material = "vgui/achievements/kill_enemy_reloading"},
+		["global_sp"] = {Name = translate.Get("perk_sp"), Description = translate.Get("perk_sp_description"), Class = "Global", Slot = 4, Rank = 0, Material = "vgui/gfx/vgui/last_match_miscellaneous"},
+		["global_none"] = {Name = translate.Get("perk_none"), Description = "", Class = "Global", Slot = 4, Rank = 0, Material = ""},
 		--["global_lasthuman"] = {Name = "Last Human", Description = "+500 SP when last human", Class = "Global", Slot = 4, Rank = 0, Material = "vgui/achievements/last_player_alive"},
 
 		
 	-- Medic	
 
-		["medic_stun"] = {Name = "Stun", Description = "Disorientates undead on impact with stunstick\n+6 stunstick damage", Class = "Medic", Slot = 1, Rank = 1, Material = "vgui/achievements/meta_pistol.vtf"},              	
-		["medic_supplies"] = {Name = "Medical Supplies", Description = "+100 medical charge for medical equipment", Class = "Medic", Slot = 1, Rank = 1, Material = "vgui/achievements/decal_sprays"},
-		["medic_medigun"] = {Name = "Medic Pistol", Description = "[TIER 0]\nSpawn with the medic pistol", Class = "Medic", Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_fiveseven"},     
-		["medic_transfusion"] = {Name = "Transfusion", Description = "PRIMARY with medkit to extract healing power equivalent health from an undead\n +50% of healing power towards medical supplies.", Class = "Medic", Slot = 1, Rank = 1, Material = "vgui/achievements/win_dual_duel.vtf"},
+		["medic_stun"] = {Name = translate.Get("perk_stun"), Description = translate.Get("perk_stun_description"), Class = translate.Get("classhuman_medic"), Slot = 1, Rank = 1, Material = "vgui/achievements/meta_pistol.vtf"},              	
+		["medic_supplies"] = {Name = translate.Get("perk_supplies"), Description = translate.Get("perk_supplies_description"), Class = translate.Get("classhuman_medic"), Slot = 1, Rank = 1, Material = "vgui/achievements/decal_sprays"},
+		["medic_medigun"] = {Name = translate.Get("perk_medpistol"), Description = translate.Get("perk_medpistol_description"), Class = translate.Get("classhuman_medic"), Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_fiveseven"},     
+		["medic_transfusion"] = {Name = translate.Get("perk_transfusion"), Description = translate.Get("perk_transfusion_description"), Class = translate.Get("classhuman_medic"), Slot = 1, Rank = 1, Material = "vgui/achievements/win_dual_duel.vtf"},
 
 		
-		["medic_overheal"] = {Name = "Overheal", Description = "Heal humans +10% of their maximum health", Class = "Medic", Slot = 2, Rank = 2, Material = "vgui/achievements/meta_rifle.vtf"},              			
-		["medic_reward"] = {Name = "Healthy Reward", Description = "+40% SP from healing\n+15% healing power", Class = "Medic", Slot = 2, Rank = 2, Material = "vgui/achievements/collect_gifts"},
-		--["medic_antivenom"] = {Name = "Anti Venom", Description = "Healing an undead with a medigun will poison them", Class = "Medic", Slot = 2, Rank = 2, Material = "vgui/achievements/lossless_extermination.vtf"},
-		["medic_flow"] = {Name = "Flow", Description = "-95% medkit healing cooldown\n -90% medkit healing power", Class = "Medic", Slot = 2, Rank = 2, Material = "vgui/achievements/fast_round_win.vtf"},
+		["medic_overheal"] = {Name = translate.Get("perk_overheal"), Description = translate.Get("perk_overheal_description"), Class = translate.Get("classhuman_medic"), Slot = 2, Rank = 2, Material = "vgui/achievements/meta_rifle.vtf"},              			
+		["medic_reward"] = {Name = translate.Get("perk_reward"), Description = translate.Get("perk_reward_description"), Class = translate.Get("classhuman_medic"), Slot = 2, Rank = 2, Material = "vgui/achievements/collect_gifts"},
+		--["medic_antivenom"] = {Name = "Anti Venom", Description = "Healing an undead with a medigun will poison them", Class = translate.Get("classhuman_medic"), Slot = 2, Rank = 2, Material = "vgui/achievements/lossless_extermination.vtf"},
+		["medic_flow"] = {Name = translate.Get("perk_flow"), Description = translate.Get("perk_flow_description"), Class = translate.Get("classhuman_medic"), Slot = 2, Rank = 2, Material = "vgui/achievements/fast_round_win.vtf"},
 
 		
 		
-		["medic_tanker"] = {Name = "Tanker", Description = "+50 damage resistance for 3 seconds when hit", Class = "Medic", Slot = 3, Rank = 6, Material = "vgui/achievements/hip_shot.vtf"},
-		["medic_immunity"] = {Name = "Natural Immunity", Description = "Immune to poison damage inflicted over time", Class = "Medic", Slot = 3, Rank = 6, Material = "vgui/achievements/win_rounds_without_buying"},
-		["medic_battlemedic"] = {Name = "Battle Medic", Description = "30% damage resistance from props\n+5% undead damage resistance", Class = "Medic", Slot = 3, Rank = 6, Material = "vgui/achievements/last_player_alive"},
+		["medic_tanker"] = {Name = translate.Get("perk_tanker"), Description = translate.Get("perk_tanker_description"), Class = translate.Get("classhuman_medic"), Slot = 3, Rank = 6, Material = "vgui/achievements/hip_shot.vtf"},
+		["medic_immunity"] = {Name = translate.Get("perk_immunity"), Description = translate.Get("perk_immunity_description"), Class = translate.Get("classhuman_medic"), Slot = 3, Rank = 6, Material = "vgui/achievements/win_rounds_without_buying"},
+		["medic_battlemedic"] = {Name = translate.Get("perk_battlemedic"), Description = translate.Get("perk_battlemedic_description"), Class = translate.Get("classhuman_medic"), Slot = 3, Rank = 6, Material = "vgui/achievements/last_player_alive"},
 
 	-- Commando
-		["commando_defender"] = {Name = "Defender", Description = "[TIER 0]\nSpawn with the Defender rifle", Class = "Commando", Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_ak47"},
-		["commando_grenadier"] = {Name = "Grenadier", Description = "+3 grenades on spawn", Class = "Commando", Slot = 1, Rank = 2, Material = "vgui/achievements/grenade_multikill"},
-		["commando_viper"] = {Name = "Viper", Description = "Shoot 2 bullets at a time with assault rifles\n \nConsumes 2 bullets\n-15% damage\n -20% accuracy", Class = "Commando", Slot = 1, Rank = 0, Material = "vgui/achievements/hip_shot"},
+		["commando_defender"] = {Name = translate.Get("perk_defender"), Description = translate.Get("perk_defender_description"), Class = translate.Get("classhuman_commando"), Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_ak47"},
+		["commando_grenadier"] = {Name = translate.Get("perk_grenadlier"), Description = translate.Get("perk_grenadleir_description"), Class = translate.Get("classhuman_commando"), Slot = 1, Rank = 2, Material = "vgui/achievements/grenade_multikill"},
+		["commando_viper"] = {Name = translate.Get("perk_viper"), Description = translate.Get("perk_viper_description"), Class = translate.Get("classhuman_commando"), Slot = 1, Rank = 0, Material = "vgui/achievements/hip_shot"},
 
-		["commando_bloodammo"] = {Name = "Blood Ammo", Description = "Receive 33% of damage done as assault rifle ammo from kills", Class = "Commando", Slot = 2, Rank = 4, Material = "vgui/achievements/win_knife_fights_low"},
-		["commando_enforcer"] = {Name = "Enforcer", Description = "+25 clip size", Class = "Commando", Slot = 2, Rank = 4, Material = "vgui/achievements/kill_enemy_last_bullet"},
-		--["commando_marksman"] = {Name = "Marksman", Description = "+60% accuracy", Class = "Commando", Slot = 2, Rank = 4, Material = "vgui/achievements/survived_headshot_due_to_helmet"},
+		["commando_bloodammo"] = {Name = translate.Get("perk_bloodammo"), Description = translate.Get("perk_bloodammo_description"), Class = translate.Get("classhuman_commando"), Slot = 2, Rank = 4, Material = "vgui/achievements/win_knife_fights_low"},
+		["commando_enforcer"] = {Name = translate.Get("perk_enforcer"), Description = translate.Get("perk_enforcer_description"), Class = translate.Get("classhuman_commando"), Slot = 2, Rank = 4, Material = "vgui/achievements/kill_enemy_last_bullet"},
+		--["commando_marksman"] = {Name = "Marksman", Description = "+60% accuracy", Class = translate.Get("classhuman_commando"), Slot = 2, Rank = 4, Material = "vgui/achievements/survived_headshot_due_to_helmet"},
 
-		["commando_kevlar"] = {Name = "Kevlar", Description = "+16% damage resistance from the undead", Class = "Commando", Slot = 3, Rank = 7, Material = "vgui/achievements/survived_headshot_due_to_helmet"},
-		["commando_health"] = {Name = "Health", Description = "+40 maximum health", Class = "Commando", Slot = 3, Rank = 7, Material = "vgui/achievements/decal_sprays"},
-	    ["commando_leadmarket"] = {Name = "Lead Market", Description = "+50% SP from kills", Class = "Commando", Slot = 3, Rank = 7, Material = "vgui/achievements/collect_gifts"},
+		["commando_kevlar"] = {Name = translate.Get("perk_kevlar"), Description = translate.Get("perk_kevlar_description"), Class = translate.Get("classhuman_commando"), Slot = 3, Rank = 7, Material = "vgui/achievements/survived_headshot_due_to_helmet"},
+		["commando_health"] = {Name = translate.Get("perk_health"), Description = translate.Get("perk_health_description"), Class = translate.Get("classhuman_commando"), Slot = 3, Rank = 7, Material = "vgui/achievements/decal_sprays"},
+	    ["commando_leadmarket"] = {Name = translate.Get("perk_leadmarket"), Description = translate.Get("perk_leadmarket_description"), Class = translate.Get("classhuman_commando"), Slot = 3, Rank = 7, Material = "vgui/achievements/collect_gifts"},
 
 		
 	-- Support	
-		["support_boardpack"] = {Name = "Board Pack", Description = "Spawn with a pack of boards", Class = "Support", Slot = 1, Rank = 3, Material = "vgui/achievements/break_windows"},
-		--["support_mobilesupplies"] = {Name = "Mobile Supplies", Description = "Replace ammo pack with mobile supplies", Class = "Support", Slot = 1, Rank = 3, Material = "vgui/achievements/kills_with_multiple_guns"},
-		["support_shotgun"] = {Name = "Shotgun", Description = "[TIER 0]\nSpawn with a shotgun", Class = "Support", Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_m3"},
-		["support_mp5"] = {Name = "MP5", Description = "[TIER 0]\nSpawn with an MP5", Class = "Support", Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_mp5navy"},
+		["support_boardpack"] = {Name = translate.Get("perk_boardpack"), Description = translate.Get("perk_boardpack_description"), Class = translate.Get("classhuman_support"), Slot = 1, Rank = 3, Material = "vgui/achievements/break_windows"},
+		--["support_mobilesupplies"] = {Name = "Mobile Supplies", Description = "Replace ammo pack with mobile supplies", Class = translate.Get("classhuman_support"), Slot = 1, Rank = 3, Material = "vgui/achievements/kills_with_multiple_guns"},
+		["support_shotgun"] = {Name = translate.Get("perk_shothun"), Description = translate.Get("perk_shotgun_description"), Class = translate.Get("classhuman_support"), Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_m3"},
+		["support_mp5"] = {Name = translate.Get("perk_mp5"), Description = translate.Get("perk_mp5_description"), Class = translate.Get("classhuman_support"), Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_mp5navy"},
 		
-		["support_ammo"] = {Name = "Ammo", Description = "+40% ammo received", Class = "Support", Slot = 2, Rank = 5, Material = "vgui/achievements/kill_enemy_reloading"},
-		["support_repairs"] = {Name = "Repairs", Description = "+3 hammer repair points\n+10 nails on spawn", Class = "Support", Slot = 2, Rank = 5, Material = "vgui/achievements/snipe_two_from_same_spot"},
-		["support_medical"] = {Name = "Medical Station", Description = "Mobile supplies gives 4 health to users and +1 SP for the owner", Class = "Support", Slot = 2, Rank = 5, Material = "vgui/achievements/collect_gifts"},              
+		["support_ammo"] = {Name = translate.Get("perk_ammo"), Description = translate.Get("perk_ammos_description"), Class = translate.Get("classhuman_support"), Slot = 2, Rank = 5, Material = "vgui/achievements/kill_enemy_reloading"},
+		["support_repairs"] = {Name = translate.Get("perk_repairs"), Description = translate.Get("perk_repairs_description"), Class = translate.Get("classhuman_support"), Slot = 2, Rank = 5, Material = "vgui/achievements/snipe_two_from_same_spot"},
+		["support_medical"] = {Name = translate.Get("perk_medical"), Description = translate.Get("perk_medical_description"), Class = translate.Get("classhuman_support"), Slot = 2, Rank = 5, Material = "vgui/achievements/collect_gifts"},              
 					
-		["support_regeneration"] = {Name = "Regeneration", Description = "Regain 1 health every 6 seconds", Class = "Support", Slot = 3, Rank = 8, Material = "vgui/achievements/decal_sprays"},
-		["support_bulk"] = {Name = "Bulk", Description = "+15% movement speed", Class = "Support", Slot = 3, Rank = 8, Material = "vgui/achievements/meta_weaponmaster"},
-		["support_health"] = {Name = "Health", Description = "+50 maximum health", Class = "Support", Slot = 3, Rank = 8, Material = "vgui/achievements/last_player_alive"},
+		["support_regeneration"] = {Name = translate.Get("perk_regeneration"), Description = translate.Get("perk_regeneration_description"), Class = translate.Get("classhuman_support"), Slot = 3, Rank = 8, Material = "vgui/achievements/decal_sprays"},
+		["support_bulk"] = {Name = translate.Get("perk_bulk"), Description = translate.Get("perk_bulk_description"), Class = translate.Get("classhuman_support"), Slot = 3, Rank = 8, Material = "vgui/achievements/meta_weaponmaster"},
+		["support_health"] = {Name = translate.Get("perk_health"), Description = translate.Get("perk_healths_description"), Class = translate.Get("classhuman_support"), Slot = 3, Rank = 8, Material = "vgui/achievements/last_player_alive"},
 	
 	-- Berserker
-		["berserker_hook"] = {Name = "Slinger", Description = "[TIER 0]\nSpawn with a hook", Class = "Berserker", Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_knife"},
-		["berserker_oppressor"] = {Name = "Oppressor", Description = "[TIER 0]\nSpawn with a lead pipe", Class = "Berserker", Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_last_bullet"},
-		["berserker_breakthrough"] = {Name = "Breakthrough", Description = "Leaps do 40% of melee damage and knocks target backwards", Class = "Berserker", Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_in_air"},     
-		["berserker_barbed"] = {Name = "Barbed Weaponry", Description = "20% of damage done is applied every 2 seconds for 3 seconds", Class = "Berserker", Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_last_bullet"},              
+		["berserker_hook"] = {Name = translate.Get("perk_slinger"), Description = translate.Get("perk_slinger_description"), Class = translate.Get("classhuman_berserker"), Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_knife"},
+		["berserker_oppressor"] = {Name = translate.Get("perk_oppressor"), Description = translate.Get("perk_oppressor_description"), Class = translate.Get("classhuman_berserker"), Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_last_bullet"},
+		["berserker_breakthrough"] = {Name = translate.Get("perk_breakthrough"), Description = translate.Get("perk_breakthrough_description"), Class = translate.Get("classhuman_berserker"), Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_in_air"},     
+		["berserker_barbed"] = {Name = translate.Get("perk_barbed"), Description = translate.Get("perk_barbed_description"), Class = translate.Get("classhuman_berserker"), Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_last_bullet"},              
 	   
-		["berserker_executioner"] = {Name = "Executioner", Description = "+30% melee damage to targets under or at 30% health", Class = "Berserker", Slot = 2, Rank = 3, Material = "vgui/achievements/pistol_round_knife_kill"},		   
-		["berserker_maniac"] = {Name = "Maniac", Description = "+25% health from melee kills\n+50% melee swing", Class = "Berserker", Slot = 2, Rank = 3, Material = "vgui/achievements/win_pistolrounds_med"},               
-		["berserker_headhunter"] = {Name = "Head Hunter", Description = "+20% melee damage on heads\n Daze target when struck on the head", Class = "Berserker", Slot = 2, Rank = 3, Material = "vgui/achievements/survived_headshot_due_to_helmet"},
-		["berserker_battlecharge"] = {Name = "Battle Charge", Description = "Bonus damage received when falling, maximum +500% damage\nIncreased leap power", Class = "Berserker", Slot = 2, Rank = 3, Material = "vgui/achievements/kill_enemy_in_air"}, 
+		["berserker_executioner"] = {Name = translate.Get("perk_executioner"), Description = translate.Get("perk_executioner_description"), Class = translate.Get("classhuman_berserker"), Slot = 2, Rank = 3, Material = "vgui/achievements/pistol_round_knife_kill"},		   
+		["berserker_maniac"] = {Name = translate.Get("perk_maniac"), Description = translate.Get("perk_maniac_description"), Class = translate.Get("classhuman_berserker"), Slot = 2, Rank = 3, Material = "vgui/achievements/win_pistolrounds_med"},               
+		["berserker_headhunter"] = {Name = translate.Get("perk_headhunter"), Description = translate.Get("perk_headhunter_description"), Class = translate.Get("classhuman_berserker"), Slot = 2, Rank = 3, Material = "vgui/achievements/survived_headshot_due_to_helmet"},
+		["berserker_battlecharge"] = {Name = translate.Get("perk_battlecharge"), Description = translate.Get("perk_battlecharge_description"), Class = translate.Get("classhuman_berserker"), Slot = 2, Rank = 3, Material = "vgui/achievements/kill_enemy_in_air"}, 
 		
-		--["berserker_porcupine"] = {Name = "Porcupine", Description = "300% of damage received goes back to the attacker", Class = "Berserker", Slot = 3, Rank = 6, Material = "vgui/achievements/immovable_object"},
-		["berserker_bloodmoney"] = {Name = "Blood Money", Description = "+9 SP from melee kills", Class = "Berserker", Slot = 3, Rank = 6, Material = "vgui/achievements/win_knife_fights_low"},
-		["berserker_vampire"] = {Name = "Vampire", Description = "+6% of melee damage goes towards health", Class = "Berserker", Slot = 3, Rank = 6, Material = "vgui/achievements/meta_pistol"},
-		["berserker_enrage"] = {Name = "Enrage", Description = "250 movement speed while under 50% health", Class = "Berserker", Slot = 3, Rank = 6, Material = "vgui/achievements/pistol_round_knife_kill"},
+		--["berserker_porcupine"] = {Name = "Porcupine", Description = "300% of damage received goes back to the attacker", Class = translate.Get("classhuman_berserker"), Slot = 3, Rank = 6, Material = "vgui/achievements/immovable_object"},
+		["berserker_bloodmoney"] = {Name = translate.Get("perk_bloodmoney"), Description = translate.Get("perk_bloodmoney_description"), Class = translate.Get("classhuman_berserker"), Slot = 3, Rank = 6, Material = "vgui/achievements/win_knife_fights_low"},
+		["berserker_vampire"] = {Name = translate.Get("perk_vampire"), Description = translate.Get("perk_vampire_description"), Class = translate.Get("classhuman_berserker"), Slot = 3, Rank = 6, Material = "vgui/achievements/meta_pistol"},
+		["berserker_enrage"] = {Name = translate.Get("perk_enrage"), Description = translate.Get("perk_enrage_description"), Class = translate.Get("classhuman_berserker"), Slot = 3, Rank = 6, Material = "vgui/achievements/pistol_round_knife_kill"},
 				
 	-- Engineer
-		["engineer_bonusturret"] = {Name = "Lockdown", Description = "+1 Turret received on spawn", Class = "Engineer", Slot = 1, Rank = 2, Material = "vgui/achievements/bomb_defuse_needed_kit"},
-		["engineer_combatturret"] = {Name = "Combat Turret", Description = "Spawn with a combat turret\nReceives all turret bonuses", Class = "Engineer", Slot = 1, Rank = 2, Material = "vgui/achievements/concurrent_dominations"},
-		["engineer_pulsepistol"] = {Name = "Pulse Pistol", Description = "[TIER 0]\nSpawn with a pulse pistol", Class = "Engineer", Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_fiveseven"},
-		["engineer_multimine"] = {Name = "Multi Mine", Description = "+5 C4 on spawn", Class = "Engineer", Slot = 1, Rank = 2, Material = "vgui/achievements/goose_chase"},                    
+		["engineer_bonusturret"] = {Name = translate.Get("perk_bonusturret"), Description = translate.Get("perk_bonusturret_description"), Class = translate.Get("classhuman_engineer"), Slot = 1, Rank = 2, Material = "vgui/achievements/bomb_defuse_needed_kit"},
+		["engineer_combatturret"] = {Name = translate.Get("perk_combatturret"), Description = translate.Get("perk_combatturret_description"), Class = translate.Get("classhuman_engineer"), Slot = 1, Rank = 2, Material = "vgui/achievements/concurrent_dominations"},
+		["engineer_pulsepistol"] = {Name = translate.Get("perk_pulsepistol"), Description = translate.Get("perk_pulsepistol_description"), Class = translate.Get("classhuman_engineer"), Slot = 1, Rank = 2, Material = "vgui/achievements/kill_enemy_fiveseven"},
+		["engineer_multimine"] = {Name = translate.Get("perk_multimine"), Description = translate.Get("perk_multimine_description"), Class = translate.Get("classhuman_engineer"), Slot = 1, Rank = 2, Material = "vgui/achievements/goose_chase"},                    
 
-		["engineer_quadsentry"] = {Name = "Quad Sentry", Description = "+3 turret shots fired\n-200% turret accuracy\nTurret consumes +3 ammo", Class = "Engineer", Slot = 2, Rank = 5, Material = "vgui/achievements/rescue_all_hostages.vtf"},
+		["engineer_quadsentry"] = {Name = translate.Get("perk_quadsentry"), Description = translate.Get("perk_quadsentry_description"), Class = translate.Get("classhuman_engineer"), Slot = 2, Rank = 5, Material = "vgui/achievements/rescue_all_hostages.vtf"},
 		
-		["engineer_turret"] = {Name = "Turret Overload", Description = "+40 turret stats", Class = "Engineer", Slot = 2, Rank = 5, Material = "vgui/achievements/bomb_defuse_needed_kit"},
-		["engineer_combustion"] = {Name = "Combustion", Description = "Targets caught in the explosion are ignited", Class = "Engineer", Slot = 2, Rank = 5, Material = "hud/t_victories_terrorist-win"},	
-		["engineer_darkenergy"] = {Name = "Dark Energy", Description = "+10% pulse damage", Class = "Engineer", Slot = 2, Rank = 5, Material = "vgui/achievements/win_rounds_without_buying"}, 
+		["engineer_turret"] = {Name = translate.Get("perk_turret"), Description = translate.Get("perk_turret_description"), Class = translate.Get("classhuman_engineer"), Slot = 2, Rank = 5, Material = "vgui/achievements/bomb_defuse_needed_kit"},
+		["engineer_combustion"] = {Name = translate.Get("perk_combustion"), Description = translate.Get("perk_combustion_description"), Class = translate.Get("classhuman_engineer"), Slot = 2, Rank = 5, Material = "hud/t_victories_terrorist-win"},	
+		["engineer_darkenergy"] = {Name = translate.Get("perk_darkenergy"), Description = translate.Get("perk_darkenergy_description"), Class = translate.Get("classhuman_engineer"), Slot = 2, Rank = 5, Material = "vgui/achievements/win_rounds_without_buying"}, 
 
-		["engineer_revenue"] = {Name = "Turret Revenue", Description = "+5 SP from turret kills", Class = "Engineer", Slot = 3, Rank = 7, Material = "vgui/achievements/kill_low_damage"},
-		["engineer_blastproof"] = {Name = "Blast Proof", Description = "+80% resistance to explosives", Class = "Engineer", Slot = 3, Rank = 7, Material = "hud/t_victories_bomb-detonated"},
+		["engineer_revenue"] = {Name = translate.Get("perk_revenue"), Description = translate.Get("perk_revenue_description"), Class = translate.Get("classhuman_engineer"), Slot = 3, Rank = 7, Material = "vgui/achievements/kill_low_damage"},
+		["engineer_blastproof"] = {Name = translate.Get("perk_blastproof"), Description = translate.Get("perk_blastproof_description"), Class = translate.Get("classhuman_engineer"), Slot = 3, Rank = 7, Material = "hud/t_victories_bomb-detonated"},
 
 	-- Sharpshooter
 		
-		["sharpshooter_python"] = {Name = "Python", Description = "[TIER 0]\nSpawn with the Python", Class = "Sharpshooter", Slot = 1, Rank = 3, Material = "vgui/achievements/hip_shot"},
-		["sharpshooter_marksman"] = {Name = "Marksman", Description = "+60% accuracy", Class = "Sharpshooter", Slot = 1, Rank = 3, Material = "vgui/achievements/domination_overkills_low"},
+		["sharpshooter_python"] = {Name = translate.Get("perk_python"), Description = translate.Get("perk_python_description"), Class = translate.Get("classhuman_sharpshooter"), Slot = 1, Rank = 3, Material = "vgui/achievements/hip_shot"},
+		["sharpshooter_marksman"] = {Name = translate.Get("perk_marksman"), Description = translate.Get("perk_marksman_description"), Class = translate.Get("classhuman_sharpshooter"), Slot = 1, Rank = 3, Material = "vgui/achievements/domination_overkills_low"},
 		
-		["sharpshooter_fragments"] = {Name = "Fragments", Description = "25% chance a sharpshooter shot will explode in fragments.\n5-8 fragments\n40% of weapon damage per fragment\n-50% accuracy on fragment shot", Class = "Sharpshooter", Slot = 2, Rank = 6, Material = "vgui/achievements/kill_low_damage"},
-		["sharpshooter_double"] = {Name = "Double Calibre", Description = "+2 Musket clip size\n+2 Python clip size", Class = "Sharpshooter", Slot = 2, Rank = 6, Material = "vgui/achievements/kill_two_with_one_shot"},              
-		["sharpshooter_friction"] = {Name = "Friction Burn", Description = "25% chance to ignite target with a headshot", Class = "Sharpshooter", Slot = 2, Rank = 6, Material = "vgui/achievements/immovable_object"},        
+		["sharpshooter_fragments"] = {Name = translate.Get("perk_fragments"), Description = translate.Get("perk_fragments_description"), Class = translate.Get("classhuman_sharpshooter"), Slot = 2, Rank = 6, Material = "vgui/achievements/kill_low_damage"},
+		["sharpshooter_double"] = {Name = translate.Get("perk_double"), Description = translate.Get("perk_double_description"), Class = translate.Get("classhuman_sharpshooter"), Slot = 2, Rank = 6, Material = "vgui/achievements/kill_two_with_one_shot"},              
+		["sharpshooter_friction"] = {Name = translate.Get("perk_friction"), Description = translate.Get("perk_friction_description"), Class = translate.Get("classhuman_sharpshooter"), Slot = 2, Rank = 6, Material = "vgui/achievements/immovable_object"},        
 		
-		["sharpshooter_skillshot"] = {Name = "Skill Shot", Description = "+5 SP for headshot kills", Class = "Sharpshooter", Slot = 3, Rank = 8, Material = "vgui/achievements/headshots_in_round"},           
-		["sharpshooter_agility"] = {Name = "Agility", Description = "+10% movement speed\n+40 jump power", Class = "Sharpshooter", Slot = 3, Rank = 8, Material = "vgui/achievements/kill_enemy_in_air"},
+		["sharpshooter_skillshot"] = {Name = translate.Get("perk_skillshot"), Description = translate.Get("perk_skillshot_description"), Class = translate.Get("classhuman_sharpshooter"), Slot = 3, Rank = 8, Material = "vgui/achievements/headshots_in_round"},           
+		["sharpshooter_agility"] = {Name = translate.Get("perk_agility"), Description = translate.Get("perk_agility_description"), Class = translate.Get("classhuman_sharpshooter"), Slot = 3, Rank = 8, Material = "vgui/achievements/kill_enemy_in_air"},
 	-- Pyro
 	
-		["pyro_backfire"] = {Name = "Backfire", Description = "6 pyro ammunition back when target has been ignited", Class = "Pyro", Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_reloading"},
-		["pyro_glock1"] = {Name = "Glock 1", Description = "[TIER 0]\nSpawn with the Glock 1", Class = "Pyro", Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_glock"},
+		["pyro_backfire"] = {Name = translate.Get("perk_backfire"), Description = translate.Get("perk_backfire_description"), Class = translate.Get("classhuman_pyro"), Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_reloading"},
+		["pyro_glock1"] = {Name = translate.Get("perk_glock1"), Description = translate.Get("perk_glock1_description"), Class = translate.Get("classhuman_pyro"), Slot = 1, Rank = 1, Material = "vgui/achievements/kill_enemy_glock"},
 	   
-		["pyro_burn"] = {Name = "Burn", Description = "+5% scorch chance\n+10 scorch damage", Class = "Pyro", Slot = 2, Rank = 3, Material = "hud/t_victories_terrorist-win"}, 
-		["pyro_flare"] = {Name = "Flare Bounce", Description = "+10 flare damage\n75% chance flare doesn't explode on impact", Class = "Pyro", Slot = 2, Rank = 3, Material = "hud/t_victories_rescue-failed"},
+		["pyro_burn"] = {Name = translate.Get("perk_burn"), Description = translate.Get("perk_burn_description"), Class = translate.Get("classhuman_pyro"), Slot = 2, Rank = 3, Material = "hud/t_victories_terrorist-win"}, 
+		["pyro_flare"] = {Name = translate.Get("perk_flare"), Description = translate.Get("perk_flare_description"), Class = translate.Get("classhuman_pyro"), Slot = 2, Rank = 3, Material = "hud/t_victories_rescue-failed"},
 	   
-		["pyro_hotpoints"] = {Name = "Hot Points", Description = "+3 SP when a target is burnt", Class = "Pyro", Slot = 3, Rank = 5, Material = "vgui/achievements/kill_bomb_pickup"},          
-		["pyro_immolate"] = {Name = "Immolate", Description = "Burn the target that damages you\n+10% damage resistance", Class = "Pyro", Slot = 3, Rank = 5, Material = "hud/t_victories_counter-terrorist-eliminated"},
+		["pyro_hotpoints"] = {Name = translate.Get("perk_hotpoints"), Description = translate.Get("perk_hotpoints_description"), Class = translate.Get("classhuman_pyro"), Slot = 3, Rank = 5, Material = "vgui/achievements/kill_bomb_pickup"},          
+		["pyro_immolate"] = {Name = translate.Get("perk_immolate"), Description = translate.Get("perk_immolate_description"), Class = translate.Get("classhuman_pyro"), Slot = 3, Rank = 5, Material = "hud/t_victories_counter-terrorist-eliminated"},
 	
 	
 	-- Bonus Perks
 	
 	["Medic"] = {Name = "Medic",		  		
-		Equipment = "Medkit, P228, Stun Stick",
-		Description = " +1% Pistol damage \n +10% Medi damage\n +10% damage Resistance\n +3% Movement speed\n +10% Medical ammo received\n +10 Medical ammo on spawn",
+		Equipment = translate.Get("classhuman_medic_equip"),
+		Description = translate.Get("classhuman_medic_base_perks"),
 		CoefDesc = " +%G%% Movement speed\n +%i%% Pistol damage\n +%i%% Medi damage\n +%i%% Poison resistance\n +%i%% Undead damage resistance\n +%i%% Medical efficiency\n +%i%% Medical ammo received\n +%i Medical ammo on spawn",
 		Coef = {0.5, 1, 1, 5, 2, 3, 10, 10},
 		Slot = 5,
@@ -477,8 +477,8 @@ GM.Perks = {
 		Model = "models/player/group03m/female_03.mdl"},
 		
 	["Commando"] = {Name = "Commando",   		
-		Equipment = "Grenades, Five SeveN, Knife", 
-		Description = " +1% Assault rifle damage \n See undead health\n +10% Clip size \n +10 Health ",
+		Equipment = translate.Get("classhuman_commando_equip"), 
+		Description = translate.Get("classhuman_commando_base_perks"),
 		CoefDesc = " +%i%% Health\n +%i%% Clip size\n +%i%% assault rifle damage",
 		Coef = {3, 3, 1},
 		Slot = 5,
@@ -487,8 +487,8 @@ GM.Perks = {
 		Model = "models/player/combine_soldier.mdl"},		
 		
 	["Support"] = {Name = "Support",    		
-		Equipment = "Mobile Supplies, Ammo Pack, USP, Hammer, Blow torch", 			
-		Description = " +1% Shotgun damage \n +1% SMG damage \n +10% Ammo received",
+		Equipment = translate.Get("classhuman_support_equip"), 			
+		Description = translate.Get("classhuman_support_base_perks"),
 		CoefDesc = " +%i%% SMG damage\n +%i%% Shotgun damage \n +%i%% Nail health\n +%G Repair points\n +%i Nails\n +%i%% Ammo received\n +%G Ammo in ammo pack",
 		Coef = {1, 1, 1, 0.25, 2, 2, 0.5},
 		Slot = 5,
@@ -497,8 +497,8 @@ GM.Perks = {
 		Model = "models/player/arctic.mdl"},		
 		
 	["Berserker"] = {Name = "Berserker", 		
-		Equipment = "Desert Eagle, Plank", 				
-		Description = " [RMB] Leap while holding a melee weapon.\n Cannot be dazed when hit\n +10% melee damage \n +5% melee damage to health\n +5 Health on melee kill\n +10% Damage resistance \n -10% Gun Damage\n +2% Movement Speed\n +5 Health",
+		Equipment = translate.Get("classhuman_berserker_equip"), 				
+		Description = translate.Get("classhuman_berserker_base_perks"),
 		CoefDesc = " +%i Health from melee kill\n +%G%% Movement speed\n  +%i Health",
 		Coef = {1, 0.5, 2},
 		Slot = 5,
@@ -507,8 +507,8 @@ GM.Perks = {
 		Model = "models/player/monk.mdl"},		
 		
 	["Engineer"] = {Name = "Engineer",   		
-		Equipment = "Turret, C4, Pistol, Frying Pan", 	
-		Description = " +1% Pulse Weapon Damage\n +5% C4 Damage\n +1 Turret Damage\n +0.01 Turret recharge rate",
+		Equipment = translate.Get("classhuman_engineer_equip"), 	
+		Description = translate.Get("classhuman_engineer_base_perks"),
 		CoefDesc = " +%G%% Turret damage\n +%G%% Turret recharge rate\n +%i%% Turret health\n +%i%% Turret ammo capacity\n +%i Pulse weapon capacity\n +%i%% Pulse weapon damage\n +%i%% Pulse weapon recharge rate\n +%i%% C4 damage\n +%i%% C4 radius",
 		Coef = {0.1, 0.005, 2, 2, 5, 1, 2, 1, 1},
 		Slot = 5,
@@ -517,8 +517,8 @@ GM.Perks = {
 		Model = "models/player/alyx.mdl"},
 		
 	["Sharpshooter"] = {Name = "Sharpshooter", 
-		Equipment = "Beretta, Knife", 	
-		Description = " +5% Sniper damage \n +8% Headshot damage\n +10% Accuracy",
+		Equipment = translate.Get("classhuman_sharpshooter_equip"), 	
+		Description = translate.Get("classhuman_sharpshooter_base_perks"),
 		CoefDesc = " +%i%% Sniper damage\n +%i%% Headshot damage\n +%i%% Accuracy",
 		Coef = {1,1,2},
 		Slot = 5,
@@ -527,8 +527,8 @@ GM.Perks = {
 		Model = "models/player/odessa.mdl"},		
 		
 	["Pyro"] = {Name = "Pyro",				
-		Equipment = "Alyx Gun, Knife", 				
-		Description = " 12% Chance to burn target\n 6 Initial burn damage\n 10 Initial scorch damage\n +10% damage to burning targets",
+		Equipment = translate.Get("classhuman_pyro_equip"), 				
+		Description = translate.Get("classhuman_pyro_base_perks"),
 		CoefDesc = " +%i Burn damage\n +%i Burn chance\n +%i Scorch damage",
 		Material = "zombiesurvival/humanclass/avatar_assault",
 		Coef = {4,2,2},
@@ -595,7 +595,7 @@ CARRY_SPEEDLOSS_MINSPEED = 160
 -- -- -- -- -- -- -- -- /
 
 -- Maximum crates per map
-MAXIMUM_CRATES = 3 -- math.random(2, 3)
+MAXIMUM_CRATES = GM:GetCratesPerMap(game.GetMap()) or GM.CrateFallBack
 
 -- Use Zombie Survival's custom footstep sounds? I'm not sure how bad it might lag considering you're potentially sending a lot of data on heavily packed servers.
 CUSTOM_FOOTSTEPS = false

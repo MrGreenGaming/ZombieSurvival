@@ -62,6 +62,8 @@ AddCSLuaFile("modules/news/cl_news.lua")
           Add them to download list (Shared)
 ---------------------------------------------------------]=]
 AddCSLuaFile("shared.lua")
+AddCSLuaFile("shared/sh_cratemaps.lua")
+AddCSLuaFile("sh_translate.lua")
 AddCSLuaFile("shared/sh_dps_sys.lua")
 AddCSLuaFile("shared/obj_player_extend.lua")
 AddCSLuaFile("shared/obj_weapon_extend.lua")
@@ -137,7 +139,8 @@ include("modules/weightspeed/sv_weightspeed.lua")
 --include("modules/friends/sv_friends.lua")
 
 --New HUD
-include("modules/hud/sv_init.lua")
+--include("modules/hud/sv_init.lua")
+include("modules/hud_beta/sv_hud_beta.lua")
 
 --Nav Graph
 -- include("modules/nav_graph/sh_nav_graph.lua")
@@ -362,7 +365,7 @@ function GM:InitPostEntity()
 	
 	
 	--Spawn initial supply crates
-	--self:SpawnSupplyCrates()
+	self:SpawnSupplyCrates()
 	
 	--Create zombie Flashlight
 	--self:CreateZombieFlashLight()
@@ -787,7 +790,6 @@ function GM:SpawnHat(pl, hattype)
 	if not pl:IsPlayer() then
 		return
 	end
-	
 	if pl:IsBot() then
 		hattype = "cigar$homburg"
 	end
@@ -796,7 +798,6 @@ function GM:SpawnHat(pl, hattype)
 	if not hattype then
 		return
 	end
-	
 	local player_hats = string.Explode("$",hattype)
 	-- Check to see if the hat is in the hats table
 	local IsHatValid = true
@@ -805,7 +806,6 @@ function GM:SpawnHat(pl, hattype)
 			IsHatValid = false
 		end
 	end
-
 	-- There isn't a hat with that name in the table
 	if not IsHatValid then return end
 
@@ -814,15 +814,13 @@ function GM:SpawnHat(pl, hattype)
 		pl.Hat:SetOwner(pl)
 		pl.Hat:SetParent(pl)
 		pl.Hat:SetPos( pl:GetPos() )
-		
 		-- Select random hat for bot
 		if pl:IsBot() then
 			pl.Hat:SetHatType("cigar$homburg")-- "cigar"
-			--print("Setting hat to rpresent")
+			print("Setting hat to rpresent")
 		else
 			pl.Hat:SetHatType( hattype )
 		end
-		
 		pl.Hat:Spawn()
 	end
 end
@@ -851,10 +849,10 @@ function GM:SpawnSuit( pl, hattype )
 	
 	local suitdata = suits[hattype]
 	
-	local itemID = util.GetItemID(hattype )
+	local itemID = util.GetItemID(hattype)
 	
-	--[==[if suits[hattype] and (not IsValid(pl.Suit) or pl.Suit:GetHatType() ~= hattype) and pl:Team() == TEAM_HUMAN 
-	and pl:GetItemsDataTable()[itemID] and (not shopData[itemID].AdminOnly or pl:IsAdmin()) then]==]
+	--if suits[hattype] and (not IsValid(pl.Suit) or pl.Suit:GetHatType() ~= hattype) and pl:Team() == TEAM_HUMAN 
+	--and pl:GetItemsDataTable()[itemID] and (not shopData[itemID].AdminOnly or pl:IsAdmin()) then
 	
 		if not IsValid( pl.Suit ) and pl:Alive() then
 			pl.Suit = ents.Create("suit_new")
@@ -867,7 +865,7 @@ function GM:SpawnSuit( pl, hattype )
 			
 			-- pl.Suit:CreateSuit( suitdata, hattype )
 		end
-	-- end
+	--end
 end
 
 function GM:DropSuit(pl)

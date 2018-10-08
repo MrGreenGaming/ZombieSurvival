@@ -1,25 +1,7 @@
--- © Limetric Studios ( www.limetricstudios.com ) -- All rights reserved.
+-- Â© Limetric Studios ( www.limetricstudios.com ) -- All rights reserved.
 -- See LICENSE.txt for license information
 
 include("shared.lua")
-
-function ENT:Initialize()
-	hook.Add("PreDrawHalos", "CustDrawHalos".. tostring(self), function()
-		if not util.tobool(GetConVarNumber("zs_drawcrateoutline")) then
-			return
-		end
-
-		if not IsValid(MySelf) or MySelf:Team() ~= TEAM_HUMAN or not MySelf:Alive() then
-			return
-		end
-		
-		halo.Add(self:GetEntities(), self.LineColor, 1, 1, 1, true, true)
-	end)
-end
-
-function ENT:OnRemove()
-	hook.Remove("PreDrawHalos", "CustDrawHalos".. tostring(self))
-end
 
 ENT.LineColor = Color(210, 0, 0, 50)
 function ENT:Draw()
@@ -29,7 +11,7 @@ function ENT:Draw()
 
 	self:DrawModel()
 
-	if not IsValid(MySelf) or MySelf:Team() ~= TEAM_HUMAN then
+	if not IsValid(MySelf) then
 		return
 	end
 
@@ -45,20 +27,26 @@ function ENT:Draw()
 	angle.r = angle.r + 90
 
 	cam.Start3D2D(pos,angle,0.26)
+	cam.IgnoreZ(true)
+	if IsValid(MySelf) and MySelf:Team() == TEAM_HUMAN then
 
 	--draw.SimpleTextOutlined("Weapons and Supplies", "ArialBoldSeven", 0, -100, Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0,0,0,255)) --New
 	draw.SimpleTextOutlined("SkillShop", "ArialBoldSeven", 0, -20, Color(255,255,255,200), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER, 1, Color(0,0,0,250)) --New
 
-		
 	--Get list of available weapons the player will most likely receive
 	--local suppliesList = GetBestAvailableWeapons()
 	local text = "USE | Browse shop "
 
-		--draw.SimpleTextOutlined(text, "ArialBoldFour", 0, -85, Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,255)) --New
 		draw.SimpleTextOutlined(text, "ArialBoldFour", 0, 20, Color(255,255,255,255), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,250)) --New
+		
+		cam.End3D2D()
+		cam.IgnoreZ(false)
+		
+		elseif IsValid(MySelf) and MySelf:Team() == TEAM_UNDEAD then
 
- 
- 		draw.SimpleTextOutlined("F3 | Salvage weapons for SP!", "ArialBoldFour", 0, 0, Color(255,255,255,250), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,200)) --New
+ 		draw.SimpleTextOutlined("This can't be broken!", "ArialBoldFour", 0, 45, Color(255,255,255,250), TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER,1, Color(0,0,0,200)) --New
  
 	cam.End3D2D()
+	cam.IgnoreZ(false)
+	end
 end

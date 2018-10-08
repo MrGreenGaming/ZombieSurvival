@@ -368,13 +368,13 @@ function Intermission(nextmap, winner, timeleft)
 	ManageGeneralScore(GENERAL_SCORE)
 	   
 	--Reposition the chatbox if the nitwits panel isn't visible
-	--[[if not NITWITZ:IsVisible() then
+	if not NITWITZ:IsVisible() then
 			CustomChat.PosX = ScaleW(40)
 			CustomChat.PosY = ScaleH(680)
 	end
 	   
 	--Open the custom chatbox
-	CustomChat.ResetChat()]]
+	CustomChat.ResetChat()
 end
  
 --[[---------------------------------------------------------
